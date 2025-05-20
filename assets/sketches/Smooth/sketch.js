@@ -1,10 +1,25 @@
 let sliderSmoothK;
+let currentOperation = "union"; // Default operation
+let btnUnion, btnSubtraction, btnIntersection;
 
 function setup() {
   createCanvas(min(windowWidth,1200),min(windowWidth,1200));
   sliderSmoothK = createSlider(0.01, 1, 0.5, 0.01); // min, max, value, step
   sliderSmoothK.position(10, 10); 
   sliderSmoothK.style('width', '180px');
+  
+  // Create operation buttons
+  btnUnion = createButton('Addition');
+  btnUnion.position(10, 40);
+  btnUnion.mousePressed(() => currentOperation = "union");
+  
+  btnSubtraction = createButton('Subtraction');
+  btnSubtraction.position(90, 40);
+  btnSubtraction.mousePressed(() => currentOperation = "subtraction");
+  
+  btnIntersection = createButton('Intersection');
+  btnIntersection.position(180, 40);
+  btnIntersection.mousePressed(() => currentOperation = "intersection");
 }
 function draw() {   
   const pix = min(windowWidth, 1200)/120;
@@ -38,15 +53,26 @@ function draw() {
       const bordoc1 = abs(c1) < soglia ; 
       const bordoc2 = abs(c2) < soglia ; 
 
-      const unione = opSmoothUnion(c2, c1, r1, kValue); 
-      const bordoUnione = abs(unione) < soglia; 
+      let result;
+      switch(currentOperation) {
+        case "union":
+          result = opSmoothUnion(c2, c1, r1, kValue); 
+          break;
+        case "subtraction":
+          result = opSmoothSubtraction(c2, c1, r1, kValue);
+          break;
+        case "intersection":
+          result = opSmoothIntersection(c2, c1, r1, kValue);
+          break;
+      }
+      const bordoUnione = abs(result) < soglia; 
 
-      const valoreOnde = sin(unione * onde) * 0.5 + 0.5*0.1; 
+      const valoreOnde = sin(result * onde) * 0.5 + 0.5*0.1; 
 
-if (unione < 0) { 
+if (result < 0) { 
           fill(valoreOnde*255*2, 0, 0); 
       } else {
-        if (unione>0) {
+        if (result>0) {
           fill(0, valoreOnde*255*2, 0); 
         } else {
           fill(0);
@@ -54,7 +80,7 @@ if (unione < 0) {
       }
        if (abs(bordoUnione)>soglia){
         fill(255)
-      }
+      } 
       rect(j * pix, i * pix, pix, pix); 
     }
     
@@ -105,11 +131,40 @@ function sUnionBinary(sd1, sd2, k_local) {
     const h_local = constrain(0.5 + 0.5 * (sd2 - sd1) / k_local, 0.0, 1.0);
     return lerp(sd2, sd1, h_local) - k_local * h_local * (1.0 - h_local);
 }
+
+// Binary smooth subtraction function
+function sSubtractionBinary(sd1, sd2, k_local) {
+    const h_local = constrain(0.5 - 0.5 * (sd2 + sd1) / k_local, 0.0, 1.0);
+    return lerp(sd2, -sd1, h_local) + k_local * h_local * (1.0 - h_local);
+}
+
+// Binary smooth intersection function
+function sIntersectionBinary(sd1, sd2, k_local) {
+    const h_local = constrain(0.5 - 0.5 * (sd2 - sd1) / k_local, 0.0, 1.0);
+    return lerp(sd2, sd1, h_local) + k_local * h_local * (1.0 - h_local);
+}
   
-  function opSmoothUnion(  d1, d2,d3, k )
-{
+function opSmoothUnion(d1, d2, d3, k) {
     // Smooth union of d1 and d2
     let res_d1_d2 = sUnionBinary(d1, d2, k);
     // Smooth union of the result with d3
     return sUnionBinary(res_d1_d2, d3, k);
+}
+
+function opSmoothSubtraction(d1, d2, d3, k) {
+    // For subtraction: smoothly blend between -d1 and min(d2, d3)
+    // First get the minimum between d2 and d3
+    const minD2D3 = min(d2, d3);
+    // Then blend between -d1 and minD2D3
+    const h = constrain(0.5 + 0.5 * (-d1 - minD2D3) / k, 0.0, 1.0);
+    return lerp(minD2D3, -d1, h) - k * h * (1.0 - h);
+}
+
+function opSmoothIntersection(d1, d2, d3, k) {
+    // For intersection: smoothly blend between d1 and min(d2, d3)
+    // First get the minimum between d2 and d3
+    const minD2D3 = min(d2, d3);
+    // Then blend between d1 and minD2D3
+    const h = constrain(0.5 + 0.5 * (d1 - minD2D3) / k, 0.0, 1.0);
+    return lerp(minD2D3, d1, h) - k * h * (1.0 - h);
 }

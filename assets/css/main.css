@@ -35,7 +35,6 @@ iframe {
 	display: block;
 	border: none;
 	width: 100%;
-	max-width: 1200px;
 	aspect-ratio: 16 / 9;
 }
 
@@ -46,14 +45,34 @@ section {
 	margin-bottom: 2em;
 	padding-top: 0.25em;
 }
-
+.iframeimg {
+	margin: 0;
+	display: block;
+	border: none;
+	width: 100%;
+	max-width: 1300px;
+	aspect-ratio: 16 / 9;
+}
+.iframelab {
+	margin: 0;
+	display: block;
+	border: none;
+	width: 100%;
+	max-width: 1200px;
+	aspect-ratio: 16 / 9;
+}
 .filetto {
 	border-top: solid 1px rgb(255, 255, 255);
 }
 
+.didascalia {
+	font-style: italic;
+	margin-right: 1em;
+}
 .titolo-sezione {
 	margin-right: 1em;
 }
+
 
 .contenitore {
 	/* max-width: 54em; */

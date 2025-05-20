@@ -26,334 +26,488 @@
 		<!-- --------------------------------------------------------------------- -->
 
 		<section class="filetto">
-			<h4 class="titolo-sezione">Cosa sono le SDF?</h4>
+			
+			<h4 class="titolo-sezione">Titolo se serve</h4>
 			<div class="contenuto-sezione">
 				<p>
-					Cosa vuol dire ottenere risultati visivi utilizzando la distanza, e come farlo concretamente?
-					Per capirlo bisogna costruire una griglia di pixel simulati, (ad esempio disegnando ripetutamente con 
-					dei cicli for la forma rect in p5.js).
-					Ora per disegnare la distanza si potrà semplicemente passare le coordinate dei pixel inserendole nella funzione di riempimento.
-					Il risultato visivo dovrebbe essere abbastanza intuitivo, man mano che un pixel si allontana dallo 0 
-					sull’ asse delle x sarà sempre più bianco. È effettivamente la posizione e quindi la distanza di un 
-					pixel da un certo punto che ne determina il suo colore.
 					
-				</p>
-				<p>
-					SDF è l’acronimo di signed distance function. Cioè funzioni di distanza con segno. 
+					SDF è l’acronimo di signed distance function. 
 					Queste funzioni geometriche e trigonometriche permettono di ottenere risultati visivi davvero sorprendenti. 
-					Ma prima di capire che cos’ è una SDF dobbiamo prima specificare che cosa significa comunemente 
-					misurare la distanza e che differenza c’è con la misurazione della distanza nelle SDF.
-				</p>
-			</div>
-		</section>
+					Ma prima di capire che cos’ è una SDF dobbiamo prima specificare che cosa 
+					significa comunemente misurare la distanza e che differenza c’è con la misurazione della distanza nelle SDF.				</p>
+			</section>
+		
+			
 		<!-- --------------------------------------------------------------------- -->
 
 		<section class="filetto">
-			<h4 class="titolo-sezione">Misurazione della distanza convenzionale </h4>
+			
+			<h4 class="titolo-sezione">Titolo se serve</h4>
 			<div class="contenuto-sezione">
 				<p>
-					“La lunghezza del tratto di linea retta (nell’ordinario spazio euclideo, altrimenti del tratto di geodetica) 
-					che congiunge due punti (e che si identifica col concetto del minimo percorso tra questi)”
-					<br> fonte:Treccani
-					<br> Matematicamente la distanza è un valore dato dalla differenza di posizione tra due punti.
-					
-					Bisogna però chiarire perché le funzioni di distanza siano nominate come “signed” cioè, con segno (-). 
-					Come fa una distanza ad essere negativa e non un valore assoluto?
-					
-					Matematicamente, in una funzione SDF, il punto da cui si misura la distanza può essere all’esterno di 
-					uno spazio definito e quindi essere positivo, appartenere ad uno spazio definito e quindi a distanza zero, 
-					o all’interno di uno spazio definito e quindi negativo. Da qui la parola “signed”. È un concetto curioso, 
-					perché fisicamente si potrà essere distanti 1m da un muro, ma non si potrà mai essere distanti 0 o tanto meno 
-					all’interno come se si fosse distanti -1m dal muro.
-					
-				</p>
-				<iframe loading="lazy" scrolling=no frameborder=0 height=700 src="./assets/img/Illustrazione_SDF-01.png"></iframe>
-			</div>
-		</section>
-		
-		<!-- --------------------------------------------------------------------- -->
-		
-		<section class="filetto">
+					“La lunghezza del tratto di linea retta (nell’ordinario spazio euclideo, 
+					altrimenti del tratto di geodetica) che congiunge due punti (e che si identifica col concetto del minimo percorso tra questi)”
+ 					fonte:Treccani
+					Matematicamente la distanza è un valore dato dalla differenza di posizione tra due punti.
 
-			<h4 class="titolo-sezione"></h4>
-			<div class="contenuto-sezione">
-				<p>
-					Per capire meglio questo concetto quindi lo si può immaginare come la propria posizioe 
-					rispetto ad una stanza: si può essere distanti 1m da una stanza, ed essere fuori. 
-					Essere distanti 0 metri da una stanza, ed essere sulla porta,  essere distanti -1 dalla stanza ed esserne all’interno.
-					
-				</p>
-				<iframe loading="lazy" scrolling=no frameborder=0 height=700 src="./assets/img/Illustrazione_SDF-02.png"></iframe>
+					Bisogna però chiarire perché le funzioni di distanza siano nominate come “signed” cioè, 
+					con segno (-). Come fa una distanza ad essere negativa e non un valore assoluto?
 
-				
-				
+				</p>
 			</section>
 			
+			<section class="">
+			<h4 class= "didascalia" font-style="italic">Didascalia (cambiare font) </h4>
+			<iframe class="iframeimg" loading="lazy" scrolling=no frameborder=0 src="./assets/img/Illustrazione_SDF-01.png"></iframe>
+			</section>
+		<!-- --------------------------------------------------------------------- -->
+
+		<section class="filetto">
+			
+			<h4 class="titolo-sezione">Titolo se serve</h4>
+			<div class="contenuto-sezione">
+				<p>
+					In una funzione SDF, il punto da cui si misura la distanza può essere all’esterno 
+					di uno spazio definito e quindi essere positivo, appartenere ad uno spazio definito 
+					e quindi a distanza zero, o all’interno di uno spazio definito e quindi negativo. 
+					Da qui la parola “signed”. È un concetto curioso, perché fisicamente si potrà essere 
+					distanti 1m da un muro, ma non si potrà mai essere distanti 0 o tanto meno all’interno 
+					come se si fosse distanti -1m dal muro. 
+					Per capire meglio questo concetto quindi lo si può immaginare come la propria posizioe 
+					rispetto ad una stanza: si può essere distanti 1m da una stanza, ed essere fuori. 
+					Essere distanti 0 metri da una stanza, ed essere sulla porta,  essere distanti -1 
+					dalla stanza ed esserne all’interno.
+
+				</p>
+			</section>
+			
+			<section class="">
+			<h4 class= "titolo-sezione">Didascalia (cambiare font) </h4>
+			<iframe class="iframeimg" loading="lazy" scrolling=no frameborder=0 src="./assets/img/Illustrazione_SDF-02.png"></iframe>
+			</section>
+		
+		<!-- --------------------------------------------------------------------- -->
+
+		<section class="filetto">
+			
+			<h4 class="titolo-sezione">Titolo se serve</h4>
+			<div class="contenuto-sezione">
+				<p>
+				
+				</p>
+			</section>
+			
+			<section class="">
+			<h4 class= "titolo-sezione">Didascalia (cambiare font) </h4>
+			<iframe class="iframelab" loading="lazy" scrolling=no frameborder=0 src="./assets/sketches/Lab p5js/"></iframe>
+			</section>
+		
+			<!-- --------------------------------------------------------------------- -->
+			
+			
+			<section class="filetto">
+				
+				<h4 class="titolo-sezione">Titolo se serve</h4>
+				<div class="contenuto-sezione">
+					<p>
+					Cosa vuol dire ottenere risultati visivi utilizzando la distanza, e come farlo concretamente?
+					Per capirlo bisogna costruire una griglia di pixel simulati, (ad esempio disegnando ripetutamente 
+					con dei cicli for la forma rect in p5.js).
+					Ora per disegnare la distanza si potrà semplicemente passare le coordinate dei pixel inserendole nella funzione di riempimento.
+					Il risultato visivo dovrebbe essere abbastanza intuitivo, man mano che un pixel si allontana 
+					dallo 0 sull’ asse delle x sarà sempre più bianco. È effettivamente la posizione e quindi la 
+					distanza di un pixel da un certo punto che ne determina il suo colore.
+					</p>
+				</section>
+				
+				<section class="">
+				<h4 class= "titolo-sezione">Didascalia (cambiare font) </h4>
+				<iframe class="iframeimg" loading="lazy" scrolling=no frameborder=0 src="./assets/img/Illustrazione_SDF-03.png"></iframe>
+				</section>
+
 			<!-- --------------------------------------------------------------------- -->
 			
 			<section class="filetto">
+				
 				<h4 class="titolo-sezione"></h4>
 				<div class="contenuto-sezione">
 					<p>
+						Avendo capito che la distanza di un pixel da un punto o la sua posizione  possono modificarne 
+						il colore si può provare a modellare la formula della distanza per ottenere effetti diversi. 
+						Se prima il colore era definito dalle coordinate di x, applicando il teorema di pitagora possiamo ottenere un gradiente circolare.
+						Un altro aspetto importante da chiarire sono le coordinate della griglia di pixel simulati. 
+						Per avere un maggior controllo delle forme e capire come agire bisogna avere coordinate di 
+						riferimento “normalizzate” e cioè che vanno da -1 a 1 con 0 al centro altrimenti si avrebbero valori difficili da utilizzare.
+						Dopo aver normalizzato la griglia si può vedere che ora il gradiente disegna un vero e proprio cerchio,
+						 la funzione di distanza primitiva di un cerchio (non ancora signed). Si deduce quindi che con teorema 
+						 di pitagora possiamo calcolare la distanza circolarmente rispetto ad ogni punto intorno all’origine.
 
 					</p>
-					<iframe loading="lazy" scrolling=no frameborder=0 src="./assets/sketches/Lab p5js/"></iframe>
-				</div>
-			</section>
-			
+				</section>
+				
+				<section class="">
+				<h4 class= "titolo-sezione">Didascalia (cambiare font) </h4>
+				<iframe class="iframeimg" loading="lazy" scrolling=no frameborder=0 src="./assets/img/Illustrazione_SDF-04.png"></iframe>
+				</section>
 			<!-- --------------------------------------------------------------------- -->
 			
+			<section class="filetto">
+				
+				<h4 class="titolo-sezione"></h4>
+				<div class="contenuto-sezione">
+					<p>
+						Allora la forma allora è vincolata all’origine? Teoricamente si ma quello che avviene durante la 
+						compilazione del codice è un test su ogni pixel della griglia rispetto al punto stabilito per definire 
+						se rientra nella funzione di distanza che si sta usando. Per cambiare questo punto si possono sommare o 
+						sottrarre dei valori spostandolo sulla griglia, si trasla così ogni valore di riempimento rispetto al nuovo punto.
+
+					</p>
+				</section>
+				
+				<section class="">
+				<h4 class= "titolo-sezione">Didascalia (cambiare font) </h4>
+				<iframe class="iframeimg" loading="lazy" scrolling=no frameborder=0 src="./assets/img/Illustrazione_SDF-05.png"></iframe>
+				</section>
+
+			<!-- --------------------------------------------------------------------- -->
+			
+			<section class="filetto">
+				
+				<h4 class="titolo-sezione"></h4>
+				<div class="contenuto-sezione">
+					<p>
+						I campi visualizzati prima possono essere racchiusi in una soglia, bisogna dire al programma di 
+						disegnare solo oltre un punto stabilito e fino ad un altro punto stabilito. Il tutto chiaramente è arbitrario, 
+						si sta solo cambiando la modalità di visualizzazione a seconda delle intenzioni.
+
+					</p>
+				</section>
+				
+				<section class="">
+				<h4 class= "titolo-sezione">Didascalia (cambiare font) </h4>
+				<iframe class="iframeimg" loading="lazy" scrolling=no frameborder=0 src="./assets/img/Illustrazione_SDF-06.png"></iframe>
+				</section>
+
+			<!-- --------------------------------------------------------------------- -->
+			
+			<section class="filetto">
+				
+				<h4 class="titolo-sezione">tITOLO SE SERVE</h4>
+				<div class="contenuto-sezione">
+					<p>
+						Avendo capito come disegnare una forma e come muoverla viene da chiedersi quali altre forme si possano ottenere. 
+						La risposta è praticamente qualsiasi, la difficoltà sta nel capire le formule. Ma andando per ordine subito dopo 
+						il cerchio si può passare al quadrato o rettangolo. Se per il cerchio ogni punto era equidistante dal centro,
+						 per il rettangolo le cose si complicano.
+					</p>
+				</section>
+				
+
+		<!-- --------------------------------------------------------------------- -->
+
 		<section class="filetto">
-			<h4 class="titolo-sezione">Sezione 4:<br>Spirograph</h4>
+			
+			<h4 class="titolo-sezione">Titolo se serve</h4>
 			<div class="contenuto-sezione">
 				<p>
-					Cosa vuol dire ottenere risultati visivi utilizzando la distanza, e come farlo concretamente?
-					Per capirlo bisogna costruire una griglia di pixel simulati, (ad esempio disegnando ripetutamente con 
-					dei cicli for la forma rect in p5.js).
-					Ora per disegnare la distanza si potrà semplicemente passare le coordinate dei pixel inserendole nella 
-					funzione di riempimento.
-					Il risultato visivo dovrebbe essere abbastanza intuitivo, man mano che un pixel si allontana dallo 0 
-					sull’ asse delle x sarà sempre più bianco. È effettivamente la posizione e quindi la distanza di un pixel 
-					da un certo punto che ne determina il suo colore.
+					ANALISI QUADRATO
+				</p>
+			</section>
+			
+			<section class="">
+			<h4 class= "titolo-sezione">Didascalia (cambiare font) </h4>
+			<iframe class="iframelab" loading="lazy" scrolling=no frameborder=0 src="./assets/sketches/Lab p5js/"></iframe>
+			</section>
+
+			<!-- --------------------------------------------------------------------- -->
+			
+			<section class="filetto">
+				
+				<h4 class="titolo-sezione"></h4>
+				<div class="contenuto-sezione">
+					<p>
+						ANALISI QUADRATO
+					</p>
+				</section>
+				
+				<section class="">
+				<h4 class= "titolo-sezione">Didascalia (cambiare font) </h4>
+				<iframe class="iframeimg" loading="lazy" scrolling=no frameborder=0 src="./assets/img/Illustrazione_SDF-07.png"></iframe>
+				</section>
+
+			<!-- --------------------------------------------------------------------- -->
+			
+			<section class="filetto">
+				
+				<h4 class="titolo-sezione"></h4>
+				<div class="contenuto-sezione">
+					<p>
+						ANALISI QUADRATO
+					</p>
+				</section>
+				
+				<section class="">
+				<h4 class= "titolo-sezione">Didascalia (cambiare font) </h4>
+				<iframe class="iframeimg" loading="lazy" scrolling=no frameborder=0 src="./assets/img/Illustrazione_SDF-08.png"></iframe>
+				</section>
+
+
+			<!-- --------------------------------------------------------------------- -->
+			
+			<section class="filetto">
+				
+				<h4 class="titolo-sezione"></h4>
+				<div class="contenuto-sezione">
+					<p>
+						ANALISI QUADRATO
+					</p>
+				</section>
+				
+				<section class="">
+				<h4 class= "titolo-sezione">Didascalia (cambiare font) </h4>
+				<iframe class="iframeimg" loading="lazy" scrolling=no frameborder=0 src="./assets/img/Illustrazione_SDF-09.png"></iframe>
+				</section>
+
+			<!-- --------------------------------------------------------------------- -->
+			
+			<section class="filetto">
+				
+				<h4 class="titolo-sezione"></h4>
+				<div class="contenuto-sezione">
+					<p>
+						Unione, sottrazione, intersezione sono le combinazioni elementari tra due forme primitive che si possono realizzare. 
+						Corrispondono alle operazioni booleane di base. Questi metodi di fusione con le funzioni SDF sono uno strumento 
+						estremamente potente, poiché permettono di costruire forme composte complesse senza la necessità di gestire o 
+						generare nuovi parametri geometrici che sono invece creati dalle normali operazioni booleane sulla geometria esplicita.* 
+
+					</p>
+				</section>
+
+
+			<!-- --------------------------------------------------------------------- -->
+			
+			<section class="filetto">
+				
+				<h4 class="titolo-sezione">TITOLO SE SERVE</h4>
+				<div class="contenuto-sezione">
+					<p>
+						Quando si modella con software che utilizzano geometrie esplicite (come Blender), dove le forme sono definite 
+						da vertici e facce con coordinate precise, unire più forme è un processo computazionalmente “costoso”, perché 
+						il software deve calcolare con precisione le intersezioni tra le superfici e generare nuove coordinate per i 
+						vertici e gli spigoli risultanti. Queste operazioni oltretutto non hanno una qualità geometrica ottimale. 
+						Le operazioni poi sono nette e rendono molto più laboriose le trasformazioni dinamiche.*
+						Al contrario, applicando le operazioni booleane alle funzioni SDF non si manipolano coordinate di vertici ma 
+						direttamente le funzioni matematiche che descrivono le forme. Questo significa ridurre il carico di calcoli 
+						nel processo di definizione della forma e consente una manovrabilità e flessibilità nettamente maggiori.
+						Quando si applica un’ operazione booleana a due forme disegnate con SDF, il risultato dell’operazione sarà 
+						un’ unica nuova funzione SDF che descrive la forma risultante in un nuovo campo di distanza. Come mettere 
+						insieme due “ricette matematiche” per ricavarne una unitaria.
+
+					</p>
+				</section>
+				
+				<section class="">
+				<h4 class= "titolo-sezione">Didascalia (cambiare font) </h4>
+				<iframe class="iframeimg" loading="lazy" scrolling=no frameborder=0 src="./assets/img/Illustrazione_SDF-10.png"></iframe>
+				</section>
+
+		<!-- --------------------------------------------------------------------- -->
+
+		<section class="filetto">
+			
+			<h4 class="titolo-sezione">Titolo se serve</h4>
+			<div class="contenuto-sezione">
+				<p>
+					NON SO COSA SCRIVERE
+				</p>
+			</section>
+			
+			<section class="">
+			<h4 class= "titolo-sezione">Didascalia (cambiare font) </h4>
+			<iframe class="iframelab" loading="lazy" scrolling=no frameborder=0 src="./assets/sketches/CerchioOnde/"></iframe>
+			</section>
+
+		<!-- --------------------------------------------------------------------- -->
+
+		<section class="filetto">
+			
+			<h4 class="titolo-sezione">Titolo se serve</h4>
+			<div class="contenuto-sezione">
+				<p>
+					L’unione booleana si applica a due forme combinando le loro funzioni in un'unica  nuova SDF che restituisce 
+					il valore minimo delle distanze di un punto rispetto a ciascuna delle forme.
+					La nuova funzione calcolerà la distanza dalla forma unita per ogni punto sul “nuovo” campo: restituirà un valore 
+					negativo se è all’ interno di almeno una delle due forme (indicando che è interno all’unione) o positivo se sarà 
+					fuori da entrambe le forme (indicando che è fuori dall’unione). 
 
 				</p>
-				<iframe loading="lazy" scrolling=no frameborder=0 height=800 src="./assets/img/Illustrazione_SDF-03.png"></iframe>
+			</section>
+			
+			<section class="">
+			<h4 class= "titolo-sezione">Didascalia (cambiare font) </h4>
+			<iframe class="iframelab" loading="lazy" scrolling=no frameborder=0 src="./assets/sketches/Addizione/"></iframe>
+			</section>
+
+		<!-- --------------------------------------------------------------------- -->
+
+		<section class="filetto">
+			
+			<h4 class="titolo-sezione">Titolo se serve</h4>
+			<div class="contenuto-sezione">
 				<p>
-					Avendo capito che la distanza di un pixel da un punto o la sua posizione 
-					possono modificarne il colore si può provare a modellare la formula della distanza 
-					per ottenere effetti diversi. Se prima il colore era definito dalle coordinate di x, 
-					applicando il teorema di pitagora possiamo ottenere un gradiente circolare.
-
-					Un altro aspetto importante da chiarire sono le coordinate della griglia di pixel simulati. 
-					Per avere un maggior controllo delle forme e capire come agire bisogna avere coordinate di riferimento 
-					“normalizzate” e cioè che vanno da -1 a 1 con 0 al centro altrimenti si avrebbero valori difficili da utilizzare.
-
-					Dopo aver normalizzato la griglia si può vedere che ora il gradiente disegna un vero e proprio cerchio, 
-					la funzione di distanza primitiva di un cerchio (non ancora signed). Si deduce quindi che con teorema di 
-					pitagora possiamo calcolare la distanza circolarmente rispetto ad ogni punto intorno all’origine.
+					La sottrazione di una forma da un’altra si realizza combinando le loro funzioni in un’ unica nuova SDF che 
+					restituisce il valore massimo delle distanze di un punto rispetto a ciascuna delle forme.
+					Il trucco per ottenere la sottrazione è l’inversione di segno di una delle due forme. Con l’inversione si 
+					intende ribaltare la logica di distanza nelle SDF (fino ad ora si è detto che un punto è negativo se all’interno 
+					di una forma e positivo se all’esterno, con l’inversione matematicamente avviene il contrario). In modo che se un 
+					punto è allo stesso tempo dentro la forma invertita e quella normale risulterà negativo per quest’ultima ma positivo 
+					per la forma invertita. Inserendo questa logica in una funzione che restituisce il massimo tra due valori si otterrà 
+					il valore positivo, cioè fuori dalla forma normale e quindi sottratto. In tutti gli altri casi il valore restituito 
+					sarà positivo indicando che il punto è fuori dalla forma sottratta, anche quando il punto sarà interno alla forma 
+					invertita ed esterno alla forma normale siccome la forma invertita restituisce valori positivi al suo interno.
 
 				</p>
-				<iframe loading="lazy" scrolling=no frameborder=0 height=800 src="./assets/img/Illustrazione_SDF-04.png"></iframe>
-				<p>
-					Allora la forma allora è vincolata all’origine? Teoricamente si 
-					ma quello che avviene durante la compilazione del codice è un test su 
-					ogni pixel della griglia rispetto al punto stabilito per definire se 
-					rientra nella funzione di distanza che si sta usando. Per cambiare questo 
-					punto si possono sommare o sottrarre dei valori spostandolo sulla griglia,
-					si trasla così ogni valore di riempimento rispetto al nuovo punto.
+			</section>
+			
+			<section class="">
+			<h4 class= "titolo-sezione">Didascalia (cambiare font) </h4>
+			<iframe class="iframelab" loading="lazy" scrolling=no frameborder=0 src="./assets/sketches/Sottrazione/"></iframe>
+			</section>
 
-					Avendo capito come disegnare una forma e come muoverla viene da chiedersi quali 
-					altre forme si possano ottenere. La risposta è praticamente qualsiasi, la difficoltà 
-					stà nello stabilire le formule. Ma andando per ordine subito dopo il cerchio si può 
-					passare al quadrato o rettangolo. Se per il cerchio ogni punto era equidistante dal 
-					centro per il rettangolo le cose si complicano.
+			<!-- --------------------------------------------------------------------- -->
+	
+			<section class="filetto">
+				
+				<h4 class="titolo-sezione">Titolo se serve</h4>
+				<div class="contenuto-sezione">
+					<p>
+						L’intersezione si applica a due forme inserendo le loro funzioni in un’unica nuova SDF che 
+						restituisce il valore massimo delle distanze di un punto rispetto a ciascuna delle due forme.
+						Quindi se il punto sarà in una sola forma sarà negativo per una ma positivo per l’altra. 
+						Se la funzione restituisce il massimo in questo caso tornerà il valore positivo (indicando che è fuori dall’intersezione). 
+						Il punto risulterà negativo solo quando sarà negativo per entrambe le forme, cioè quando la funzione restituirà un valore 
+						massimo tra due ma comunque negativo, (indicando che è interno all’intersezione).
+						
+					</p>
+				</section>
+				
+				<section class="">
+				<h4 class= "titolo-sezione">Didascalia (cambiare font) </h4>
+				<iframe class="iframelab" loading="lazy" scrolling=no frameborder=0 src="./assets/sketches/Intersezione/"></iframe>
+				</section>
+				
+				<!-- --------------------------------------------------------------------- -->
+				
+				<section class="filetto">
 					
-				</p>
-				<iframe loading="lazy" scrolling=no frameborder=0 height=600 src="./assets/img/Illustrazione_SDF-05.png"></iframe>
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-					Maecenas quis ante sit amet neque cursus hendrerit ac sit amet nisl.
-					In cursus aliquam odio eu eleifend.
-					Ut sed auctor magna.
-					In hac habitasse platea dictumst.
-					Aliquam aliquam nisl mi.
-					Phasellus et orci elit.
-					Maecenas vehicula elit et lacus accumsan consequat.
-					Nam consectetur lacus ante.
-					Vestibulum et massa dolor.
-					Aenean condimentum blandit eros non dapibus.
-					Maecenas quam nulla, porta eu nibh in, cursus iaculis mauris.
-					Phasellus sit amet nulla eu tellus dictum cursus.
-					Sed aliquet, ipsum sit amet tempus semper, augue velit consequat mi, et gravida sem purus a quam.
-				</p>
-				<iframe loading="lazy" scrolling=no frameborder=0 height=600 src="./assets/img/Illustrazione_SDF-06.png"></iframe>
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-					Maecenas quis ante sit amet neque cursus hendrerit ac sit amet nisl.
-					In cursus aliquam odio eu eleifend.
-					Ut sed auctor magna.
-					In hac habitasse platea dictumst.
-					Aliquam aliquam nisl mi.
-					Phasellus et orci elit.
-					Maecenas vehicula elit et lacus accumsan consequat.
-					Nam consectetur lacus ante.
-					Vestibulum et massa dolor.
-					Aenean condimentum blandit eros non dapibus.
-					Maecenas quam nulla, porta eu nibh in, cursus iaculis mauris.
-					Phasellus sit amet nulla eu tellus dictum cursus.
-					Sed aliquet, ipsum sit amet tempus semper, augue velit consequat mi, et gravida sem purus a quam.
-				</p>
-				<iframe loading="lazy" scrolling=no frameborder=0 height=600 src="./assets/img/Illustrazione_SDF-07.png"></iframe>
-				<iframe loading="lazy" scrolling=no frameborder=0 height=600 src="./assets/img/Illustrazione_SDF-08.png"></iframe>
+					<h4 class="titolo-sezione">Titolo se serve</h4>
+					<div class="contenuto-sezione">
+						<p>
+							Tutte le operazioni booleane discusse fino ad ora (unione, sottrazione e intersezione), 
+							creano una nuova SDF unendo due forme in una funzione che restituisce in modo netto un valore 
+							dopo averne elaborati due, il maggiore o il minore tra due valori a seconda dei casi. 
+							Un’ altra opzione consente di compiere le stesse operazioni ma creando una funzione che 
+							non restituisca un solo valore “netto” ma un valore "sfumato" tra i due valori, cioè una 
+							transizione graduale tra le distanze delle due forme. La funzione delle operazioni smooth ad esempio elabora 
+							i valori delle distanze di due forme insieme ad un parametro aggiuntivo: k (chiamato parametro o raggio di fusione). 
+							È questo nuovo elemento che controllerà l’ampiezza dell’area in cui avverrà la fusione. 
+							Contro intuitivamente più questo valore sarà piccolo maggiore sarà l’area influenzata dalla 
+							funzione, riducendo al massimo gli spigoli vivi delle forme nelle operazioni, e viceversa, più sarà 
+							grande, minore sarà l’area di influenza aumentando gli spigoli vivi delle forme nelle operazioni. 
+							Questa funzione matematica complessa ma molto affascinante, permette di unire forme in maniera 
+							organica come non si potrebbe fare con altri mezzi a parità di “costo” di calcoli computazionali.
+							
+						</p>
+					</section>
+					
+					<section class="">
+						<h4 class= "titolo-sezione">Didascalia (cambiare font) </h4>
+						<iframe class="iframeimg" loading="lazy" scrolling=no frameborder=0 src="./assets/img/Illustrazione_SDF-11.png"></iframe>
+					</section> 
+					
+					<!-- --------------------------------------------------------------------- -->
+			
+					<section class="filetto">
+						
+						<h4 class="titolo-sezione">Titolo se serve</h4>
+						<div class="contenuto-sezione">
+							<p>
+								E se le forme sono più di due? le formule rimangono invariate? La risposta è no e risiede 
+								nel fatto che le operazioni booleane sono per loro natura funzioni binarie, cioè prendono 
+								sempre due elementi e ne elaborano un risultato unitario (due input un output). 
+								Quindi se si vuole operare tra più di due forme bisognerà creare dei blocchi di funzioni 
+								da inserire in nuove funzioni, per chiarire se si deve sottrarre due forme da una forma si 
+								potrà creare una “funzione blocco” che unisce le due forme, per poi inserirla in un’altra 
+								funzione che sottrae due forme (già raggruppate) da un’altra forma. Questo non è l’unico 
+								metodo ma si possono percorrere altre strade per giungere agli stessi risultati, 
+								mantenendo sempre presente che in una funzione andranno inseriti sempre solamente due elementi.
 
-			</div>
-		</section>
+							</p>
+						</section>
+						
+						<section class="">
+						<h4 class= "titolo-sezione">Didascalia (cambiare font) </h4>
+						<iframe class="iframelab" loading="lazy" scrolling=no frameborder=0 src="./assets/sketches/Smooth/"></iframe>
+						</section>
+					
+					
+					<!-- --------------------------------------------------------------------- -->
+			
+			<section class="filetto">
+				
+				<h4 class="titolo-sezione"></h4>
+				<div class="contenuto-sezione">
+					<p>
+						Oltre a tutti questi vantaggi sopra elencati costruire, una forma in 2D con una SDF significa 
+						anche avere praticamente gratis la possibilità di renderla 3D, estrudendo, cioè spingendo la 
+						forma bidimensionale “verso l’alto”. Per riprendere l’esempio della cerchio iniziale, è come 
+						avere un ritaglio di carta rotondo su cui impilare tanti ritagli uguali. Matematicamente aggiungendo 
+						una dimensione, si otterrà un cilindro e la sezione trasversale manterrà la sua forma originaria.
+						Si può dire quindi visualizzare la forma SDF in 2D come la sezione trasversale o la “pianta” di una 
+						forma tridimensionale. Per le forme 3D che non possono essere ottenute tramite  estrusione, ovvero 
+						quelle che non hanno due superfici parallele ed uguali agli estremi con pareti perpendicolari alle 
+						facce e costanti lungo l’altezza della forma, si può utilizzare la rivoluzione, Cioè invece di spingere 
+						la forma verso l’alto la si può far ruotare intorno ad un asse. Come un cartello a semicerchio che 
+						compie una rotazione completa intorno ad un palo e disegna una sfera.*
+						L’estrusione o la rivoluzione di forme disegnate con SDF 2D per ottenere forme 3D è anche più 
+						efficiente dal punto di vista computazionale, siccome il codice sarà più ottimizzato rispetto ad altre tecniche di modellazione 3D.
+						
+					</p>
+				</section>
+				
+				<section class="">
+				<h4 class= "titolo-sezione">Didascalia (cambiare font) </h4>
+				<iframe class="iframeimg" loading="lazy" scrolling=no frameborder=0 src="./assets/img/Illustrazione_SDF-11.png"></iframe>
+				</section>
+			
+						<!-- --------------------------------------------------------------------- -->
+						<!-- --------------------------------------------------------------------- -->
 
-<!-- --------------------------------------------------------------------- -->
+				<section class="filetto">
+					<h4 class="titolo-sezione">Bibliografia</h4>
+					<div class="contenuto-sezione">
+						<ul>
+							<li>https://iquilezles.org/articles/distfunctions2d/</li>
+							<li>Maecenas quis ante sit amet neque cursus hendrerit ac sit amet nisl</li>
+							<li>In cursus aliquam odio eu eleifend</li>
+							<li>Ut sed auctor magna</li>
+							<li>In hac habitasse platea dictumst</li>
+							<li>Aliquam aliquam nisl mi</li>
+							<li>Phasellus et orci elit</li>
+							<li>Maecenas vehicula elit et lacus accumsan consequat</li>
+							<li>Nam consectetur lacus ante</li>
+							<li>Vestibulum et massa dolor</li>
+							<li>Aenean condimentum blandit eros non dapibus</li>
+							<li>Maecenas quam nulla, porta eu nibh in, cursus iaculis mauris</li>
+							<li>Phasellus sit amet nulla eu tellus dictum cursus</li>
+							<li>Sed aliquet, ipsum sit amet tempus semper, augue velit consequat mi, et gravida sem purus a quam</li>
+						</ul>
+		
+					</div>
+				</section>
+				
+			
 
-		<section class="filetto">
-			<h4 class="titolo-sezione">Sezione 5:<br> Radianti (GIF)</h4>
-			<div class="contenuto-sezione">
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-					Maecenas quis ante sit amet neque cursus hendrerit ac sit amet nisl.
-					In cursus aliquam odio eu eleifend.
-					Ut sed auctor magna.
-					In hac habitasse platea dictumst.
-					Aliquam aliquam nisl mi.
-					Phasellus et orci elit.
-					Maecenas vehicula elit et lacus accumsan consequat.
-					Nam consectetur lacus ante.
-					Vestibulum et massa dolor.
-					Aenean condimentum blandit eros non dapibus.
-					Maecenas quam nulla, porta eu nibh in, cursus iaculis mauris.
-					Phasellus sit amet nulla eu tellus dictum cursus.
-					Sed aliquet, ipsum sit amet tempus semper, augue velit consequat mi, et gravida sem purus a quam.
-				</p>
-				<iframe loading="lazy" scrolling=no frameborder=0 src="./assets/sketches/CerchioOnde/"></iframe>
-			</div>
-		</section>
-
-<!-- --------------------------------------------------------------------- -->
-		<section class="filetto">
-			<h4 class="titolo-sezione">Sezione 5:<br> Radianti (GIF)</h4>
-			<div class="contenuto-sezione">
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-					Maecenas quis ante sit amet neque cursus hendrerit ac sit amet nisl.
-					In cursus aliquam odio eu eleifend.
-					Ut sed auctor magna.
-					In hac habitasse platea dictumst.
-					Aliquam aliquam nisl mi.
-					Phasellus et orci elit.
-					Maecenas vehicula elit et lacus accumsan consequat.
-					Nam consectetur lacus ante.
-					Vestibulum et massa dolor.
-					Aenean condimentum blandit eros non dapibus.
-					Maecenas quam nulla, porta eu nibh in, cursus iaculis mauris.
-					Phasellus sit amet nulla eu tellus dictum cursus.
-					Sed aliquet, ipsum sit amet tempus semper, augue velit consequat mi, et gravida sem purus a quam.
-				</p>
-				<iframe loading="lazy" scrolling=no frameborder=0 src="./assets/sketches/RectOnde/"></iframe>
-			</div>
-		</section>
-<!-- --------------------------------------------------------------------- -->
-		<section class="filetto">
-			<h4 class="titolo-sezione">Sezione 5:<br> Radianti (GIF)</h4>
-			<div class="contenuto-sezione">
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-					Maecenas quis ante sit amet neque cursus hendrerit ac sit amet nisl.
-					In cursus aliquam odio eu eleifend.
-					Ut sed auctor magna.
-					In hac habitasse platea dictumst.
-					Aliquam aliquam nisl mi.
-					Phasellus et orci elit.
-					Maecenas vehicula elit et lacus accumsan consequat.
-					Nam consectetur lacus ante.
-					Vestibulum et massa dolor.
-					Aenean condimentum blandit eros non dapibus.
-					Maecenas quam nulla, porta eu nibh in, cursus iaculis mauris.
-					Phasellus sit amet nulla eu tellus dictum cursus.
-					Sed aliquet, ipsum sit amet tempus semper, augue velit consequat mi, et gravida sem purus a quam.
-				</p>
-				<iframe loading="lazy" scrolling=no frameborder=0 src="./assets/sketches/Addizione/"></iframe>
-			</div>
-		</section>
-<!-- --------------------------------------------------------------------- -->
-		<section class="filetto">
-			<h4 class="titolo-sezione">Sezione 5:<br> Radianti (GIF)</h4>
-			<div class="contenuto-sezione">
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-					Maecenas quis ante sit amet neque cursus hendrerit ac sit amet nisl.
-					In cursus aliquam odio eu eleifend.
-					Ut sed auctor magna.
-					In hac habitasse platea dictumst.
-					Aliquam aliquam nisl mi.
-					Phasellus et orci elit.
-					Maecenas vehicula elit et lacus accumsan consequat.
-					Nam consectetur lacus ante.
-					Vestibulum et massa dolor.
-					Aenean condimentum blandit eros non dapibus.
-					Maecenas quam nulla, porta eu nibh in, cursus iaculis mauris.
-					Phasellus sit amet nulla eu tellus dictum cursus.
-					Sed aliquet, ipsum sit amet tempus semper, augue velit consequat mi, et gravida sem purus a quam.
-				</p>
-				<iframe loading="lazy" scrolling=no frameborder=0 src="./assets/sketches/Sottrazione/"></iframe>
-			</div>
-		</section>
-<!-- --------------------------------------------------------------------- -->
-		<section class="filetto">
-			<h4 class="titolo-sezione">Sezione 5:<br> Radianti (GIF)</h4>
-			<div class="contenuto-sezione">
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-					Maecenas quis ante sit amet neque cursus hendrerit ac sit amet nisl.
-					In cursus aliquam odio eu eleifend.
-					Ut sed auctor magna.
-					In hac habitasse platea dictumst.
-					Aliquam aliquam nisl mi.
-					Phasellus et orci elit.
-					Maecenas vehicula elit et lacus accumsan consequat.
-					Nam consectetur lacus ante.
-					Vestibulum et massa dolor.
-					Aenean condimentum blandit eros non dapibus.
-					Maecenas quam nulla, porta eu nibh in, cursus iaculis mauris.
-					Phasellus sit amet nulla eu tellus dictum cursus.
-					Sed aliquet, ipsum sit amet tempus semper, augue velit consequat mi, et gravida sem purus a quam.
-				</p>
-				<iframe loading="lazy" scrolling=no frameborder=0 src="./assets/sketches/Intersezione/"></iframe>
-			</div>
-		</section>
-<!-- --------------------------------------------------------------------- -->
-		<section class="filetto">
-			<h4 class="titolo-sezione">Sezione 5:<br> Radianti (GIF)</h4>
-			<div class="contenuto-sezione">
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-					Maecenas quis ante sit amet neque cursus hendrerit ac sit amet nisl.
-					In cursus aliquam odio eu eleifend.
-					Ut sed auctor magna.
-					In hac habitasse platea dictumst.
-					Aliquam aliquam nisl mi.
-					Phasellus et orci elit.
-					Maecenas vehicula elit et lacus accumsan consequat.
-					Nam consectetur lacus ante.
-					Vestibulum et massa dolor.
-					Aenean condimentum blandit eros non dapibus.
-					Maecenas quam nulla, porta eu nibh in, cursus iaculis mauris.
-					Phasellus sit amet nulla eu tellus dictum cursus.
-					Sed aliquet, ipsum sit amet tempus semper, augue velit consequat mi, et gravida sem purus a quam.
-				</p>
-				<iframe loading="lazy" scrolling=no frameborder=0 src="./assets/sketches/Smooth/"></iframe>
-			</div>
-		</section>
-<!-- --------------------------------------------------------------------- -->
-
-
-		<section class="filetto">
-			<h4 class="titolo-sezione">Bibliografia</h4>
-			<div class="contenuto-sezione">
-				<ul>
-					<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit</li>
-					<li>Maecenas quis ante sit amet neque cursus hendrerit ac sit amet nisl</li>
-					<li>In cursus aliquam odio eu eleifend</li>
-					<li>Ut sed auctor magna</li>
-					<li>In hac habitasse platea dictumst</li>
-					<li>Aliquam aliquam nisl mi</li>
-					<li>Phasellus et orci elit</li>
-					<li>Maecenas vehicula elit et lacus accumsan consequat</li>
-					<li>Nam consectetur lacus ante</li>
-					<li>Vestibulum et massa dolor</li>
-					<li>Aenean condimentum blandit eros non dapibus</li>
-					<li>Maecenas quam nulla, porta eu nibh in, cursus iaculis mauris</li>
-					<li>Phasellus sit amet nulla eu tellus dictum cursus</li>
-					<li>Sed aliquet, ipsum sit amet tempus semper, augue velit consequat mi, et gravida sem purus a quam</li>
-				</ul>
-
-			</div>
-		</section>
 	</main>
 </body>
 </html>

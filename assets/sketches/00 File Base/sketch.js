@@ -23,10 +23,12 @@ function draw() {
       
 
         const r1 = rettangolo(u, v, 0.6, 0.35); 
+        const r2 = rettangoloAng(u, v, 0.6, 0.35, -3.65); 
         const c1 = cerchio(u, v, 0.7)
 
       const bordor1 = abs(r1) < soglia ; 
-      const bordoc1 = abs(c1) < soglia  ; 
+      const bordoc1 = abs(c1); 
+      const bordor2 = abs(r2) < soglia  ; 
 
 
       //if (c1 <= 0) {
@@ -34,11 +36,7 @@ function draw() {
       //} else {
       //  fill (0)
       //}
-      if ((abs(c1) < soglia) || (r1 < 0)) {
-        fill(255);
-      } else {
-        fill(0);   
-      }
+fill(bordoc1*255)
 
       rect(j * pix, i * pix, pix, pix); 
     }
@@ -58,3 +56,22 @@ function rettangolo(px, py, halfWidth, halfHeight) {
     return sqrt(x ** 2 + y ** 2) - r;
   }
   
+function rettangoloAng(px, py, halfWidth, halfHeight, angDegrees) {
+
+  const c = cos(angDegrees);
+  const s = sin(angDegrees);
+
+  const px_rotated = c * px + s * py;
+  const py_rotated = -s * px + c * py;
+
+  const dx = abs(px_rotated) - halfWidth;
+  const dy = abs(py_rotated) - halfHeight;
+
+  if (dx <= 0 && dy <= 0) { 
+    return max(dx, dy);    
+  } else { 
+    const ox = max(dx, 0); 
+    const oy = max(dy, 0);
+    return sqrt(ox * ox + oy * oy); 
+  }
+}

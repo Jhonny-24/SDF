@@ -12,7 +12,7 @@ function draw() {
 
   const DimStatic = min(400,windowHeight/1.5) ;
   const raggStatic = DimStatic / 2;
-  const centroStatic = min(600/2, windowHeight / 2);
+  const centroStatic = min(600/2, windowHeight / 2)+50;
 
   ellipse(centroStatic, centroStatic, DimStatic);
   
