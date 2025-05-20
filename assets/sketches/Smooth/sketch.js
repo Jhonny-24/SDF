@@ -1,22 +1,22 @@
-const f =1200;
+const Csize =1200;
 
 function setup() {
-  createCanvas(min(windowWidth,1200),min(windowWidth,1200));
+  createCanvas(Csize,Csize);
 }
 function draw() {   
   const pix = 10;
-  const soglia = pix * 0.5 / windowWidth * 2; 
+  const soglia = pix * 0.5 / width * 2; 
   
-  const normMouseX = mouseX / windowWidth * 2 - 1;
-  const normMouseY = mouseY / min(windowWidth,1200) * 2 - 1;
+  const normMouseX = mouseX / width * 2 - 1;
+  const normMouseY = mouseY / height * 2 - 1;
   const onde = 80; 
   
   background(0); 
 
   noStroke();
   
-  const numPixX = floor(min(1200,windowWidth) / pix);
-  const numPixY = floor(min(1200,windowWidth) / pix); 
+  const numPixX = floor(Csize / pix);
+  const numPixY = floor(Csize / pix); 
 
   for (let j = 0; j < numPixX; j++) {    
     for (let i = 0; i < numPixY; i++) {   

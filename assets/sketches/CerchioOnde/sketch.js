@@ -10,8 +10,8 @@ function draw() {
   background(0); 
 
   stroke(255); 
-  strokeWeight(0.5);
-  
+  //strokeWeight(0.5);
+  noStroke();
   const numPixX = floor(Csize / pix);
   const numPixY = floor(Csize / pix); 
 
@@ -22,21 +22,22 @@ function draw() {
         const v = (numPixX <= 1) ? 0 : map(j, 0, numPixX - 1, -1, 1); 
         const c1 = cerchio(v, u, 0.8); 
 
-        const onde = 80;
+        const onde = 40;
         
         if (abs(c1) < soglia) {
           fill(255);
         } else {
-          const valoreOnde = sin(c1 * onde + frameCount * 0.05) * 0.5 + 0.5; 
+          const valoreOnde = sin(c1 * onde + frameCount * 0.05) * 0.5 + 0.5*0.1; 
           if (c1 < 0) { 
-            if (valoreOnde > 0.5) {
-              fill(255, 0, 0); 
-            } else {
-              fill(0); 
-            }
+            fill(255*valoreOnde*2,0,0)
+          //if (valoreOnde > 0.5) {
+          //  fill(255, 0, 0); 
+          //} else {
+          //  fill(0); 
+          //}
           } else {
-            if (valoreOnde > 0.5) {
-              fill(0, 255, 0); 
+            if (c1 > 0) {
+              fill(0,valoreOnde*255*2,0); 
             } else {
               fill(0);
             }
@@ -45,6 +46,17 @@ function draw() {
       
         rect(j * pix, i * pix, pix, pix); 
     }
+  }
+    stroke(255);
+    strokeWeight(0.5);
+
+  for(let i =0; i<numPixX+1; i++) {
+    const x = i*pix
+    line(x, 0, x, height)
+  }
+  for(let i =0; i<numPixY+1; i++) {
+    const y = i*pix
+    line(0, y, width, y)
   }
 }
 
