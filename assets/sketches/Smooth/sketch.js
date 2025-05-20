@@ -1,26 +1,89 @@
 let sliderSmoothK;
 let currentOperation = "union"; // Default operation
-let btnUnion, btnSubtraction, btnIntersection;
+
+// Variabili per i pulsanti
+let btnAddition, btnSubtraction, btnIntersection;
+let canvasXOffset = 60; // Offset per posizionare il canvas
+let buttonSize = 40; // Dimensione dei pulsanti
+let buttonSpacing = 60; // Spazio tra i pulsanti
 
 function setup() {
-  createCanvas(min(windowWidth,1200),min(windowWidth,1200));
-  sliderSmoothK = createSlider(0.01, 1, 0.5, 0.01); // min, max, value, step
-  sliderSmoothK.position(10, 10); 
-  sliderSmoothK.style('width', '180px');
+  // Crea il canvas con un offset per lasciare spazio ai pulsanti
+  let canvas = createCanvas(min(windowWidth,1200),min(windowWidth,1200));
+  canvas.position(canvasXOffset, 0);
   
-  // Create operation buttons
-  btnUnion = createButton('Addition');
-  btnUnion.position(10, 40);
-  btnUnion.mousePressed(() => currentOperation = "union");
+  // Centramento bottoni nello spazio a sinistra
+  let buttonX = (canvasXOffset - buttonSize) / 2;
   
-  btnSubtraction = createButton('Subtraction');
-  btnSubtraction.position(90, 40);
+  // Crea i pulsanti HTML alla sinistra del canvas
+  btnAddition = createButton('+');
+  btnAddition.position(buttonX, 0); // Allineato al bordo superiore del canvas
+  btnAddition.size(buttonSize, buttonSize);
+  btnAddition.style('background-color', 'black');
+  btnAddition.style('color', 'white');
+  btnAddition.style('border', '1px solid white');
+  btnAddition.style('font-size', '24px');
+  btnAddition.mousePressed(() => currentOperation = "union");
+  
+  btnSubtraction = createButton('-');
+  btnSubtraction.position(buttonX, buttonSpacing);
+  btnSubtraction.size(buttonSize, buttonSize);
+  btnSubtraction.style('background-color', 'black');
+  btnSubtraction.style('color', 'white');
+  btnSubtraction.style('border', '1px solid white');
+  btnSubtraction.style('font-size', '24px');
   btnSubtraction.mousePressed(() => currentOperation = "subtraction");
   
-  btnIntersection = createButton('Intersection');
-  btnIntersection.position(180, 40);
+  btnIntersection = createButton('∩');
+  btnIntersection.position(buttonX, buttonSpacing * 2);
+  btnIntersection.size(buttonSize, buttonSize);
+  btnIntersection.style('background-color', 'black');
+  btnIntersection.style('color', 'white');
+  btnIntersection.style('border', '1px solid white');
+  btnIntersection.style('font-size', '24px');
   btnIntersection.mousePressed(() => currentOperation = "intersection");
+  
+  // Crea lo slider verticale al centro rispetto ai pulsanti
+  sliderSmoothK = createSlider(0.01, 1, 0.5, 0.01); // min, max, value, step
+  sliderSmoothK.position(buttonX+21, buttonSpacing * 3 );
+  sliderSmoothK.style('width', '180px');
+  
+  // Applica gli stili allo slider
+  sliderSmoothK.style('appearance', 'none');
+  sliderSmoothK.style('-webkit-appearance', 'none');
+  sliderSmoothK.style('background', '#333333');
+  sliderSmoothK.style('height', '5px');
+  sliderSmoothK.style('outline', 'none');
+  
+  // Crea uno stile per la manopola dello slider GIALLA
+  let styleElem = document.createElement('style');
+  styleElem.innerHTML = `
+    #${sliderSmoothK.elt.id}::-webkit-slider-thumb {
+      -webkit-appearance: none !important;
+      appearance: none !important;
+      width: 15px !important;
+      height: 15px !important;
+      border-radius: 50% !important;
+      background: #ffff00 !important; /* Giallo */
+      cursor: pointer !important;
+      border: none !important;
+    }
+    #${sliderSmoothK.elt.id}::-moz-range-thumb {
+      width: 15px !important;
+      height: 15px !important;
+      border-radius: 50% !important;
+      background: #ffff00 !important; /* Giallo */
+      cursor: pointer !important;
+      border: none !important;
+    }
+  `;
+  document.head.appendChild(styleElem);
+  
+  // Applica la rotazione per renderlo verticale
+  sliderSmoothK.style('transform', 'rotate(90deg)');
+  sliderSmoothK.style('transform-origin', 'left top');
 }
+
 function draw() {   
   const pix = min(windowWidth, 1200)/120;
   const soglia = pix * 0.5 / windowWidth * 2; 
@@ -34,7 +97,6 @@ function draw() {
   background(0); 
 
   noStroke();
-  
   
   const numPixX = floor(min(1200,windowWidth) / pix);
   const numPixY = floor(min(1200,windowWidth) / pix); 
@@ -69,8 +131,8 @@ function draw() {
 
       const valoreOnde = sin(result * onde) * 0.5 + 0.5*0.1; 
 
-if (result < 0) { 
-          fill(valoreOnde*255*2, 0, 0); 
+      if (result < 0) { 
+        fill(valoreOnde*255*2, 0, 0); 
       } else {
         if (result>0) {
           fill(0, valoreOnde*255*2, 0); 
@@ -78,24 +140,39 @@ if (result < 0) {
           fill(0);
         }
       }
-       if (abs(bordoUnione)>soglia){
+      if (abs(bordoUnione)>soglia){
         fill(255)
       } 
       rect(j * pix, i * pix, pix, pix); 
     }
-    
   }
+  
   stroke(255);
   strokeWeight(0.5*(windowHeight/windowWidth));
 
-for(let i =0; i<numPixX+1; i++) {
-  const x = i*pix
-  line(x, 0, x, height)
+  for(let i =0; i<numPixX+1; i++) {
+    const x = i*pix
+    line(x, 0, x, height)
+  }
+  for(let i =0; i<numPixY+1; i++) {
+    const y = i*pix
+    line(0, y, width, y)
+  }
+  
+  // Aggiorna lo stile dei pulsanti in base all'operazione corrente
+  updateButtonStyles();
 }
-for(let i =0; i<numPixY+1; i++) {
-  const y = i*pix
-  line(0, y, width, y)
-}
+
+function updateButtonStyles() {
+  // Imposta lo stile del pulsante attivo (giallo quando selezionato)
+  btnAddition.style('background-color', currentOperation === "union" ? '#ffff00' : 'black');
+  btnAddition.style('color', currentOperation === "union" ? 'black' : 'white');
+  
+  btnSubtraction.style('background-color', currentOperation === "subtraction" ? '#ffff00' : 'black');
+  btnSubtraction.style('color', currentOperation === "subtraction" ? 'black' : 'white');
+  
+  btnIntersection.style('background-color', currentOperation === "intersection" ? '#ffff00' : 'black');
+  btnIntersection.style('color', currentOperation === "intersection" ? 'black' : 'white');
 }
 
 function rettangolo(px, py, halfWidth, halfHeight, angDegrees) {
@@ -119,9 +196,9 @@ function rettangolo(px, py, halfWidth, halfHeight, angDegrees) {
 }
 
   
-  function cerchio(x, y, r) {
-    return sqrt(x ** 2 + y ** 2) - r;
-  }
+function cerchio(x, y, r) {
+  return sqrt(x ** 2 + y ** 2) - r;
+}
 
 
 //da rifare
