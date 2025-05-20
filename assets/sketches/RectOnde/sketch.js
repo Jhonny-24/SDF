@@ -1,19 +1,19 @@
-const Csize =600;
+
 
 function setup() {
-  createCanvas(Csize,Csize);
+  createCanvas(min(windowHeight,600),min(windowHeight,600));
 }
 function draw() {   
-  const pix = 10;
-  const soglia = pix * 0.5 / width * 2;
+  const pix = min(windowHeight, 600)/60;
+  const soglia = pix * 0.5 / windowHeight * 2; 
+  
   
   background(0); 
 
-  //stroke(255); 
- noStroke();
+  noStroke();
   
-  const numPixX = floor(Csize / pix);
-  const numPixY = floor(Csize / pix); 
+  const numPixX = floor(min(600,windowHeight) / pix);
+  const numPixY = floor(min(600,windowHeight) / pix); 
 
   for (let j = 0; j < numPixX; j++) {    
     for (let i = 0; i < numPixY; i++) {   
@@ -51,7 +51,7 @@ function draw() {
       }
     }
     stroke(255);
-    strokeWeight(0.5);
+    strokeWeight(0.5*(windowHeight/windowWidth));
 
     for(let i =0; i<numPixX+1; i++) {
       const x = i*pix
@@ -59,7 +59,7 @@ function draw() {
     }
     for(let i =0; i<numPixY+1; i++) {
       const y = i*pix
-      line(0, y, width, y)
+      line(0, y, windowWidth/2, y)
     }
 }
 

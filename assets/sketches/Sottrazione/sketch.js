@@ -1,22 +1,20 @@
-const Csize =1200;
-
 function setup() {
-  createCanvas(Csize,Csize);
+  createCanvas(min(windowWidth,1200),min(windowWidth,1200));
 }
 function draw() {   
-  const pix = 10;
-  const soglia = pix * 0.5 / width * 2; 
+  const pix = min(windowWidth, 1200)/120;
+  const soglia = pix * 0.5 / windowWidth * 2; 
   
-  const normMouseX = mouseX / width * 2 - 1;
-  const normMouseY = mouseY / height * 2 - 1;
+  const normMouseX = mouseX / windowWidth * 2 - 1;
+  const normMouseY = mouseY / min(windowWidth,1200) * 2 - 1;
   const onde = 80; 
   
   background(0); 
 
   noStroke();
   
-  const numPixX = floor(Csize / pix);
-  const numPixY = floor(Csize / pix); 
+  const numPixX = floor(min(1200,windowWidth) / pix);
+  const numPixY = floor(min(1200,windowWidth) / pix); 
 
   for (let j = 0; j < numPixX; j++) {    
     for (let i = 0; i < numPixY; i++) {   
@@ -48,16 +46,20 @@ function draw() {
           fill(0);
         }
       }
-      if (abs(bordor1)>soglia || abs(bordoc1) > soglia||abs(bordoc2) > soglia){
-        fill(255)
-      }
 
+      if (abs(bordoSottrazione) > soglia){
+        fill(255)
+      } else{
+      if (abs(bordoc2) > soglia||abs(bordoc1) > soglia||abs(bordor1) > soglia){
+        fill(0,180, 0)
+      }
+    }
       rect(j * pix, i * pix, pix, pix); 
     }
     
   }
   stroke(255);
-  strokeWeight(0.5);
+  strokeWeight(0.5*(windowHeight/windowWidth));
 
 for(let i =0; i<numPixX+1; i++) {
   const x = i*pix

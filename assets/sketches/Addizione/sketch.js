@@ -1,4 +1,4 @@
-const f =1200;
+
 
 function setup() {
   createCanvas(min(windowWidth,1200),min(windowWidth,1200));
@@ -46,15 +46,17 @@ if (unione < 0) {
           fill(0);
         }
       }
-      if (abs(bordor1)>soglia || abs(bordoc1) > soglia||abs(bordoc2) > soglia){
+      if (abs(bordoUnione)>soglia){
         fill(255)
+      } else { if (abs(bordoc2) > soglia||abs(bordor1) > soglia||abs(bordoc1) > soglia)
+        fill(180, 0, 0)
       }
       rect(j * pix, i * pix, pix, pix); 
     }
     
   }
   stroke(255);
-  strokeWeight(0.5);
+  strokeWeight(0.5*(windowHeight/windowWidth));
 
 for(let i =0; i<numPixX+1; i++) {
   const x = i*pix
