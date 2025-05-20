@@ -4,7 +4,7 @@ function setup() {
   createCanvas(min(windowWidth,1200),min(windowWidth,1200));
 }
 function draw() {   
-  const pix = 10;
+  const pix = min(windowWidth, 1200)/120;
   const soglia = pix * 0.5 / windowWidth * 2; 
   
   const normMouseX = mouseX / windowWidth * 2 - 1;
