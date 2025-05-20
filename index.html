@@ -1,71 +1,336 @@
 <!DOCTYPE html>
-<html lang="it">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SDF Demo Responsiva</title>
-  <link rel="stylesheet" href="style.css">
+	<meta charset="utf-8">
+	<title>Signed Distance Functions</title>
+	<meta name="Lorenzo Livorsi e Samuele de March"      content="Nome Cognome">
+	<meta name="description" content="Descrizione">
+	<meta name="viewport"    content="width=device-width, initial-scale=1">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet"   href="./assets/css/main.css">
 </head>
 <body>
-  <div id="SDF" class="fade-in-from-top" style="animation-delay: 0s;">SDF</div>
+	<main class="contenitore">
 
-  <div id="testobox" class="fade-in-from-top" style="animation-delay: 0.2s;">
-    Le Signed Distance Function (SDF) sono una rappresentazione matematica di superfici nello spazio tridimensionale, dove ogni punto dello spazio è associato alla distanza più breve dalla superficie. Se il punto si trova all'interno della superficie, la distanza è negativa, mentre se si trova all'esterno, la distanza è positiva. La funzione restituisce quindi il valore della distanza e, allo stesso tempo, indica da quale lato della superficie si trova il punto.
-    <br><br>
-    Gli SDF sono utilizzati in molti campi, tra cui la computer grafica, la modellazione 3D e la simulazione fisica, per rappresentare oggetti complessi in modo efficiente e per applicare tecniche come il ray tracing e il rendering volumetrico. Questo approccio offre anche vantaggi nelle operazioni booleane tra oggetti 3D, come unione, differenza e intersezione, grazie alla semplicità matematica delle funzioni di distanza.
-  </div>
+		<!-- --------------------------------------------------------------------- -->
 
-  <div class="demo-container fade-in-from-top" id="demo1-scroll-container" style="animation-delay: 0.4s;">
-      <div class="buttons-container-vertical">
-          <div class="shape-btn circle-shape active" id="btnDemo1Shape1"></div> <div class="shape-btn triangle-shape" id="btnDemo1Shape2"></div>
-          <div class="shape-btn square-shape" id="btnDemo1Shape3"></div>
-          <div class="slider-container">
-              <input type="range" id="pixel-slider-demo1" class="slider" min="10" max="40" value="20" step="1">
-              <span id="slider-value-demo1">20</span>
-          </div>
-      </div>
-      <div id="canvas-holder"></div> </div>
+		<header>
+			<span></span>
+			<h1>Signed Distance Functions</h1>
+		</header>
+		
+		<!-- --------------------------------------------------------------------- -->
 
-  <div class="additional-text-box fade-in-from-top" style="animation-delay: 0.6s;">
-    Le Signed Distance Function (SDF) sono una rappresentazione matematica di superfici nello spazio tridimensionale, dove ogni punto dello spazio è associato alla distanza più breve dalla superficie. Se il punto si trova all'interno della superficie, la distanza è negativa, mentre se si trova all'esterno, la distanza è positiva. La funzione restituisce quindi il valore della distanza e, allo stesso tempo, indica da quale lato della superficie si trova il punto.
-    <br><br>
-    Gli SDF sono utilizzati in molti campi, tra cui la computer grafica, la modellazione 3D e la simulazione fisica, per rappresentare oggetti complessi in modo efficiente e per applicare tecniche come il ray tracing e il rendering volumetrico. Questo approccio offre anche vantaggi nelle operazioni booleane tra oggetti 3D, come unione, differenza e intersezione, grazie alla semplicità matematica delle funzioni di distanza.
-  </div>
+		<section class="filetto">
+			<h4 class="titolo-sezione">Cosa sono le SDF?</h4>
+			<div class="contenuto-sezione">
+				<p>
+					Cosa vuol dire ottenere risultati visivi utilizzando la distanza, e come farlo concretamente?
+					Per capirlo bisogna costruire una griglia di pixel simulati, (ad esempio disegnando ripetutamente con 
+					dei cicli for la forma rect in p5.js).
+					Ora per disegnare la distanza si potrà semplicemente passare le coordinate dei pixel inserendole nella funzione di riempimento.
+					Il risultato visivo dovrebbe essere abbastanza intuitivo, man mano che un pixel si allontana dallo 0 
+					sull’ asse delle x sarà sempre più bianco. È effettivamente la posizione e quindi la distanza di un 
+					pixel da un certo punto che ne determina il suo colore.
+					
+				</p>
+				<p>
+					SDF è l’acronimo di signed distance function. Cioè funzioni di distanza con segno. 
+					Queste funzioni geometriche e trigonometriche permettono di ottenere risultati visivi davvero sorprendenti. 
+					Ma prima di capire che cos’ è una SDF dobbiamo prima specificare che cosa significa comunemente 
+					misurare la distanza e che differenza c’è con la misurazione della distanza nelle SDF.
+				</p>
+			</div>
+		</section>
+		<!-- --------------------------------------------------------------------- -->
 
-  <div class="full-width-demo-container fade-in-from-top" id="demo2-scroll-container" style="animation-delay: 0.8s;">
-    <div id="canvas-holder-2"></div> </div>
+		<section class="filetto">
+			<h4 class="titolo-sezione">Misurazione della distanza convenzionale </h4>
+			<div class="contenuto-sezione">
+				<p>
+					“La lunghezza del tratto di linea retta (nell’ordinario spazio euclideo, altrimenti del tratto di geodetica) 
+					che congiunge due punti (e che si identifica col concetto del minimo percorso tra questi)”
+					<br> fonte:Treccani
+					<br> Matematicamente la distanza è un valore dato dalla differenza di posizione tra due punti.
+					
+					Bisogna però chiarire perché le funzioni di distanza siano nominate come “signed” cioè, con segno (-). 
+					Come fa una distanza ad essere negativa e non un valore assoluto?
+					
+					Matematicamente, in una funzione SDF, il punto da cui si misura la distanza può essere all’esterno di 
+					uno spazio definito e quindi essere positivo, appartenere ad uno spazio definito e quindi a distanza zero, 
+					o all’interno di uno spazio definito e quindi negativo. Da qui la parola “signed”. È un concetto curioso, 
+					perché fisicamente si potrà essere distanti 1m da un muro, ma non si potrà mai essere distanti 0 o tanto meno 
+					all’interno come se si fosse distanti -1m dal muro.
+					
+				</p>
+				<iframe scrolling=no frameborder=0 height=700 src="./assets/img/Illustrazione_SDF-01.png"></iframe>
+			</div>
+		</section>
+		
+		<!-- --------------------------------------------------------------------- -->
+		
+		<section class="filetto">
 
-  <div class="additional-text-box fade-in-from-top" style="animation-delay: 1.0s;">
-    Le Signed Distance Function (SDF) sono una rappresentazione matematica di superfici nello spazio tridimensionale, dove ogni punto dello spazio è associato alla distanza più breve dalla superficie. Se il punto si trova all'interno della superficie, la distanza è negativa, mentre se si trova all'esterno, la distanza è positiva. La funzione restituisce quindi il valore della distanza e, allo stesso tempo, indica da quale lato della superficie si trova il punto.
-    <br><br>
-    Gli SDF sono utilizzati in molti campi, tra cui la computer grafica, la modellazione 3D e la simulazione fisica, per rappresentare oggetti complessi in modo efficiente e per applicare tecniche come il ray tracing e il rendering volumetrico. Questo approccio offre anche vantaggi nelle operazioni booleane tra oggetti 3D, come unione, differenza e intersezione, grazie alla semplicità matematica delle funzioni di distanza.
-  </div>
+			<h4 class="titolo-sezione"></h4>
+			<div class="contenuto-sezione">
+				<p>
+					Per capire meglio questo concetto quindi lo si può immaginare come la propria posizioe 
+					rispetto ad una stanza: si può essere distanti 1m da una stanza, ed essere fuori. 
+					Essere distanti 0 metri da una stanza, ed essere sulla porta,  essere distanti -1 dalla stanza ed esserne all’interno.
+					
+				</p>
+				<iframe scrolling=no frameborder=0 height=700 src="./assets/img/Illustrazione_SDF-02.png"></iframe>
 
-  <div class="full-width-demo-container fade-in-from-top" id="demo-container-3" style="animation-delay: 1.2s;">
-    <div id="canvas-holder-3" style="margin-bottom: 10px;">
-      </div> <div id="buttons-holder-3" style="text-align: center; padding-bottom: 20px;">
-      </div> </div>
+				
+				
+			</section>
+			
+			<!-- --------------------------------------------------------------------- -->
+			
+			<section class="filetto">
+				<h4 class="titolo-sezione"></h4>
+				<div class="contenuto-sezione">
+					<p>
 
- <div class="additional-text-box fade-in-from-top" style="animation-delay: 1.0s;">
-    Le Signed Distance Function (SDF) sono una rappresentazione matematica di superfici nello spazio tridimensionale, dove ogni punto dello spazio è associato alla distanza più breve dalla superficie. Se il punto si trova all'interno della superficie, la distanza è negativa, mentre se si trova all'esterno, la distanza è positiva. La funzione restituisce quindi il valore della distanza e, allo stesso tempo, indica da quale lato della superficie si trova il punto.
-    <br><br>
-    Gli SDF sono utilizzati in molti campi, tra cui la computer grafica, la modellazione 3D e la simulazione fisica, per rappresentare oggetti complessi in modo efficiente e per applicare tecniche come il ray tracing e il rendering volumetrico. Questo approccio offre anche vantaggi nelle operazioni booleane tra oggetti 3D, come unione, differenza e intersezione, grazie alla semplicità matematica delle funzioni di distanza.
-  </div>
+					</p>
+					<iframe scrolling=no frameborder=0 height=800 src="./assets/sketches/Lab p5js/"></iframe>
+				</div>
+			</section>
+			
+			<!-- --------------------------------------------------------------------- -->
+			
+		<section class="filetto">
+			<h4 class="titolo-sezione">Sezione 4:<br>Spirograph</h4>
+			<div class="contenuto-sezione">
+				<p>
+					Cosa vuol dire ottenere risultati visivi utilizzando la distanza, e come farlo concretamente?
+					Per capirlo bisogna costruire una griglia di pixel simulati, (ad esempio disegnando ripetutamente con 
+					dei cicli for la forma rect in p5.js).
+					Ora per disegnare la distanza si potrà semplicemente passare le coordinate dei pixel inserendole nella 
+					funzione di riempimento.
+					Il risultato visivo dovrebbe essere abbastanza intuitivo, man mano che un pixel si allontana dallo 0 
+					sull’ asse delle x sarà sempre più bianco. È effettivamente la posizione e quindi la distanza di un pixel 
+					da un certo punto che ne determina il suo colore.
 
-  <div class="full-width-demo-container fade-in-from-top" id="demo-container-4" style="animation-delay: 1.4s;">
-    <div id="canvas-holder-4" style="margin-bottom: 10px;">
-      </div> <div id="controls-holder-4" class="demo4-controls-container">
-      </div> </div>
+				</p>
+				<iframe scrolling=no frameborder=0 height=800 src="./assets/img/Illustrazione_SDF-03.png"></iframe>
+				<p>
+					Avendo capito che la distanza di un pixel da un punto o la sua posizione 
+					possono modificarne il colore si può provare a modellare la formula della distanza 
+					per ottenere effetti diversi. Se prima il colore era definito dalle coordinate di x, 
+					applicando il teorema di pitagora possiamo ottenere un gradiente circolare.
 
-  <div id="footer" class="fade-in-from-top" style="animation-delay: 1.6s;"> Lorenzo Livorsi<br>
-    Samuele De March
-  </div>
+					Un altro aspetto importante da chiarire sono le coordinate della griglia di pixel simulati. 
+					Per avere un maggior controllo delle forme e capire come agire bisogna avere coordinate di riferimento 
+					“normalizzate” e cioè che vanno da -1 a 1 con 0 al centro altrimenti si avrebbero valori difficili da utilizzare.
 
-  <script src="https://cdn.jsdelivr.net/npm/p5@1.11.3/lib/p5.min.js"></script>
-  <script src="Js/sketchDemo1.js"></script>
-  <script src="Js/sketchDemo2.js"></script> 
-  <script src="Js/sketchDemo3.js"></script>
-  <script src="Js/sketchDemo4.js"></script>
-  <script src="Js/main.js"></script>
- </body>
+					Dopo aver normalizzato la griglia si può vedere che ora il gradiente disegna un vero e proprio cerchio, 
+					la funzione di distanza primitiva di un cerchio (non ancora signed). Si deduce quindi che con teorema di 
+					pitagora possiamo calcolare la distanza circolarmente rispetto ad ogni punto intorno all’origine.
+
+				</p>
+				<iframe scrolling=no frameborder=0 height=800 src="./assets/img/Illustrazione_SDF-04.png"></iframe>
+				<p>
+					Allora la forma allora è vincolata all’origine? Teoricamente si 
+					ma quello che avviene durante la compilazione del codice è un test su 
+					ogni pixel della griglia rispetto al punto stabilito per definire se 
+					rientra nella funzione di distanza che si sta usando. Per cambiare questo 
+					punto si possono sommare o sottrarre dei valori spostandolo sulla griglia,
+					si trasla così ogni valore di riempimento rispetto al nuovo punto.
+
+					Avendo capito come disegnare una forma e come muoverla viene da chiedersi quali 
+					altre forme si possano ottenere. La risposta è praticamente qualsiasi, la difficoltà 
+					stà nello stabilire le formule. Ma andando per ordine subito dopo il cerchio si può 
+					passare al quadrato o rettangolo. Se per il cerchio ogni punto era equidistante dal 
+					centro per il rettangolo le cose si complicano.
+					
+				</p>
+				<iframe scrolling=no frameborder=0 height=600 src="./assets/img/Illustrazione_SDF-05.png"></iframe>
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+					Maecenas quis ante sit amet neque cursus hendrerit ac sit amet nisl.
+					In cursus aliquam odio eu eleifend.
+					Ut sed auctor magna.
+					In hac habitasse platea dictumst.
+					Aliquam aliquam nisl mi.
+					Phasellus et orci elit.
+					Maecenas vehicula elit et lacus accumsan consequat.
+					Nam consectetur lacus ante.
+					Vestibulum et massa dolor.
+					Aenean condimentum blandit eros non dapibus.
+					Maecenas quam nulla, porta eu nibh in, cursus iaculis mauris.
+					Phasellus sit amet nulla eu tellus dictum cursus.
+					Sed aliquet, ipsum sit amet tempus semper, augue velit consequat mi, et gravida sem purus a quam.
+				</p>
+				<iframe scrolling=no frameborder=0 height=600 src="./assets/img/Illustrazione_SDF-06.png"></iframe>
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+					Maecenas quis ante sit amet neque cursus hendrerit ac sit amet nisl.
+					In cursus aliquam odio eu eleifend.
+					Ut sed auctor magna.
+					In hac habitasse platea dictumst.
+					Aliquam aliquam nisl mi.
+					Phasellus et orci elit.
+					Maecenas vehicula elit et lacus accumsan consequat.
+					Nam consectetur lacus ante.
+					Vestibulum et massa dolor.
+					Aenean condimentum blandit eros non dapibus.
+					Maecenas quam nulla, porta eu nibh in, cursus iaculis mauris.
+					Phasellus sit amet nulla eu tellus dictum cursus.
+					Sed aliquet, ipsum sit amet tempus semper, augue velit consequat mi, et gravida sem purus a quam.
+				</p>
+				<iframe scrolling=no frameborder=0 height=600 src="./assets/img/Illustrazione_SDF-07.png"></iframe>
+				<iframe scrolling=no frameborder=0 height=600 src="./assets/img/Illustrazione_SDF-08.png"></iframe>
+
+			</div>
+		</section>
+
+<!-- --------------------------------------------------------------------- -->
+
+		<section class="filetto">
+			<h4 class="titolo-sezione">Sezione 5:<br> Radianti (GIF)</h4>
+			<div class="contenuto-sezione">
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+					Maecenas quis ante sit amet neque cursus hendrerit ac sit amet nisl.
+					In cursus aliquam odio eu eleifend.
+					Ut sed auctor magna.
+					In hac habitasse platea dictumst.
+					Aliquam aliquam nisl mi.
+					Phasellus et orci elit.
+					Maecenas vehicula elit et lacus accumsan consequat.
+					Nam consectetur lacus ante.
+					Vestibulum et massa dolor.
+					Aenean condimentum blandit eros non dapibus.
+					Maecenas quam nulla, porta eu nibh in, cursus iaculis mauris.
+					Phasellus sit amet nulla eu tellus dictum cursus.
+					Sed aliquet, ipsum sit amet tempus semper, augue velit consequat mi, et gravida sem purus a quam.
+				</p>
+				<iframe scrolling=no frameborder=0 height=600 src="./assets/sketches/CerchioOnde/"></iframe>
+			</div>
+		</section>
+
+<!-- --------------------------------------------------------------------- -->
+		<section class="filetto">
+			<h4 class="titolo-sezione">Sezione 5:<br> Radianti (GIF)</h4>
+			<div class="contenuto-sezione">
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+					Maecenas quis ante sit amet neque cursus hendrerit ac sit amet nisl.
+					In cursus aliquam odio eu eleifend.
+					Ut sed auctor magna.
+					In hac habitasse platea dictumst.
+					Aliquam aliquam nisl mi.
+					Phasellus et orci elit.
+					Maecenas vehicula elit et lacus accumsan consequat.
+					Nam consectetur lacus ante.
+					Vestibulum et massa dolor.
+					Aenean condimentum blandit eros non dapibus.
+					Maecenas quam nulla, porta eu nibh in, cursus iaculis mauris.
+					Phasellus sit amet nulla eu tellus dictum cursus.
+					Sed aliquet, ipsum sit amet tempus semper, augue velit consequat mi, et gravida sem purus a quam.
+				</p>
+				<iframe scrolling=no frameborder=0 height=600 src="./assets/sketches/RectOnde/"></iframe>
+			</div>
+		</section>
+<!-- --------------------------------------------------------------------- -->
+		<section class="filetto">
+			<h4 class="titolo-sezione">Sezione 5:<br> Radianti (GIF)</h4>
+			<div class="contenuto-sezione">
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+					Maecenas quis ante sit amet neque cursus hendrerit ac sit amet nisl.
+					In cursus aliquam odio eu eleifend.
+					Ut sed auctor magna.
+					In hac habitasse platea dictumst.
+					Aliquam aliquam nisl mi.
+					Phasellus et orci elit.
+					Maecenas vehicula elit et lacus accumsan consequat.
+					Nam consectetur lacus ante.
+					Vestibulum et massa dolor.
+					Aenean condimentum blandit eros non dapibus.
+					Maecenas quam nulla, porta eu nibh in, cursus iaculis mauris.
+					Phasellus sit amet nulla eu tellus dictum cursus.
+					Sed aliquet, ipsum sit amet tempus semper, augue velit consequat mi, et gravida sem purus a quam.
+				</p>
+				<iframe scrolling=no frameborder=0 height=600 src="./assets/sketches/Addizione/"></iframe>
+			</div>
+		</section>
+<!-- --------------------------------------------------------------------- -->
+		<section class="filetto">
+			<h4 class="titolo-sezione">Sezione 5:<br> Radianti (GIF)</h4>
+			<div class="contenuto-sezione">
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+					Maecenas quis ante sit amet neque cursus hendrerit ac sit amet nisl.
+					In cursus aliquam odio eu eleifend.
+					Ut sed auctor magna.
+					In hac habitasse platea dictumst.
+					Aliquam aliquam nisl mi.
+					Phasellus et orci elit.
+					Maecenas vehicula elit et lacus accumsan consequat.
+					Nam consectetur lacus ante.
+					Vestibulum et massa dolor.
+					Aenean condimentum blandit eros non dapibus.
+					Maecenas quam nulla, porta eu nibh in, cursus iaculis mauris.
+					Phasellus sit amet nulla eu tellus dictum cursus.
+					Sed aliquet, ipsum sit amet tempus semper, augue velit consequat mi, et gravida sem purus a quam.
+				</p>
+				<iframe scrolling=no frameborder=0 height=600 src="./assets/sketches/Sottrazione/"></iframe>
+			</div>
+		</section>
+<!-- --------------------------------------------------------------------- -->
+		<section class="filetto">
+			<h4 class="titolo-sezione">Sezione 5:<br> Radianti (GIF)</h4>
+			<div class="contenuto-sezione">
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+					Maecenas quis ante sit amet neque cursus hendrerit ac sit amet nisl.
+					In cursus aliquam odio eu eleifend.
+					Ut sed auctor magna.
+					In hac habitasse platea dictumst.
+					Aliquam aliquam nisl mi.
+					Phasellus et orci elit.
+					Maecenas vehicula elit et lacus accumsan consequat.
+					Nam consectetur lacus ante.
+					Vestibulum et massa dolor.
+					Aenean condimentum blandit eros non dapibus.
+					Maecenas quam nulla, porta eu nibh in, cursus iaculis mauris.
+					Phasellus sit amet nulla eu tellus dictum cursus.
+					Sed aliquet, ipsum sit amet tempus semper, augue velit consequat mi, et gravida sem purus a quam.
+				</p>
+				<iframe scrolling=no frameborder=0 height=600 src="./assets/sketches/Intersezione/"></iframe>
+			</div>
+		</section>
+<!-- --------------------------------------------------------------------- -->
+
+
+		<section class="filetto">
+			<h4 class="titolo-sezione">Bibliografia</h4>
+			<div class="contenuto-sezione">
+				<ul>
+					<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit</li>
+					<li>Maecenas quis ante sit amet neque cursus hendrerit ac sit amet nisl</li>
+					<li>In cursus aliquam odio eu eleifend</li>
+					<li>Ut sed auctor magna</li>
+					<li>In hac habitasse platea dictumst</li>
+					<li>Aliquam aliquam nisl mi</li>
+					<li>Phasellus et orci elit</li>
+					<li>Maecenas vehicula elit et lacus accumsan consequat</li>
+					<li>Nam consectetur lacus ante</li>
+					<li>Vestibulum et massa dolor</li>
+					<li>Aenean condimentum blandit eros non dapibus</li>
+					<li>Maecenas quam nulla, porta eu nibh in, cursus iaculis mauris</li>
+					<li>Phasellus sit amet nulla eu tellus dictum cursus</li>
+					<li>Sed aliquet, ipsum sit amet tempus semper, augue velit consequat mi, et gravida sem purus a quam</li>
+				</ul>
+
+			</div>
+		</section>
+	</main>
+</body>
 </html>
