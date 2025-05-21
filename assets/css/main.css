@@ -55,7 +55,7 @@ section {
 }
 .sketch-image {
 	width: 100%;
-	height: 100%;
+	height: 500px*2em;
 	object-fit: contain; /* Or 'cover', depending on desired behavior */
 }
 .iframeimg img{
