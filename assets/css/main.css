@@ -53,6 +53,11 @@ section {
 	margin-bottom: 2em;
 	padding-top: 0.25em;
 }
+.sketch-image {
+	width: 100%;
+	height: 100%;
+	object-fit: contain; /* Or 'cover', depending on desired behavior */
+}
 .iframeimg img{
 	margin: 0;
 	display: block;
