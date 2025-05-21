@@ -102,6 +102,12 @@ section {
 	width: 100%;
 }
 
+.formula {
+	width: 100%;
+	max-width:250px;
+}
+
+
 .bordopulsanti{
 	margin-left:-3.5em;
 }
@@ -134,4 +140,18 @@ ul {
 	.bordopulsanti {
 		margin-left: 0;
 	}
+}
+
+.contenuto-sezione ul li {
+    list-style-type: none;
+}
+
+.contenuto-sezione ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.contenuto-sezione ul li a:hover,
+.contenuto-sezione ul li a:active {
+    color: yellow;
 }
