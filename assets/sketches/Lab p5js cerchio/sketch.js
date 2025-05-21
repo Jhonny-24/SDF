@@ -88,6 +88,6 @@ if (ValoreResponsivo >2){
     textSize(ValoreResponsivo*2.5);
     text (raggDinamic.toFixed(0), mouseX, mouseY- ValoreResponsivo*3) 
   }
-  console.log(ValoreResponsivo)
+  
 }
  
