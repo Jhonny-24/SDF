@@ -1,5 +1,5 @@
 function setup() {
-  createCanvas(min(1200, windowWidth), min(windowHeight, 600));
+  createCanvas(min(600, windowHeight), min(windowHeight, 600));
 }
 
 function draw() {
@@ -10,12 +10,12 @@ function draw() {
   strokeWeight(2);
 
   const dimStatic  = min(400, windowHeight / 1.5)
-  const DimStaticX = min(400, windowHeight / 1.5) + 100;
-  const DimStaticY = min(400, windowHeight / 1.5);
+  const DimStaticX = min(400, windowHeight / 3);
+  const DimStaticY = min(400, windowHeight / 1.5);;
   const raggStatic = dimStatic / 2;
   const raggStaticX = DimStaticX / 2;
   const raggStaticY = DimStaticY / 2;
-  const centroStatic = min(600 / 2, windowHeight / 2) + 50;
+  const centroStatic = min(600 / 2, windowHeight / 2);
   //const DimDinamic = raggDinamic * 2;
 
   // Calcola la distanza dal punto (mouseX, mouseY) al bordo del rettangolo

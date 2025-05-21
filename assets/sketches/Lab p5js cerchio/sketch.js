@@ -1,6 +1,6 @@
 
 function setup() {
-  createCanvas(min(1200,windowWidth),min(windowHeight,600));
+  createCanvas(min(600,windowHeight),min(windowHeight,600));
 }
 function draw() {   
 
@@ -10,9 +10,9 @@ function draw() {
   noFill();
   strokeWeight(2);
 
-  const DimStatic = min(400,windowHeight/1.5) ;
+  const DimStatic = min(400,windowHeight/1.8) ;
   const raggStatic = DimStatic / 2;
-  const centroStatic = min(600/2, windowHeight / 2)+50;
+  const centroStatic = min(600/2, windowHeight / 2);
 
   ellipse(centroStatic, centroStatic, DimStatic);
   
