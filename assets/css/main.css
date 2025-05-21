@@ -102,9 +102,10 @@ section {
 	width: 100%;
 }
 
-.formula {
-	width: 100%;
-	max-width:250px;
+img.formula {
+	max-height: 25px;
+	width: auto;
+	height: auto;
 }
 
 

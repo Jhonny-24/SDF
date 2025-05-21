@@ -129,9 +129,9 @@
 						Dopo aver normalizzato la griglia si può vedere che ora il gradiente appare completamente circolare (traslando il piano lo abbiamo si è solo reso visibile).
 						 Si deduce quindi che con teorema di pitagora possiamo calcolare la distanza circolarmente rispetto ad ogni punto intorno all’origine
 
+						</p>
 						<img class="formula" src="./assets/img/Illustrazione_SDF-13.png">
-					</p>
-				</section>
+					</section>
 
 				<section class="">
 				<h4 class= "titolo-sezione"></h4>
@@ -155,8 +155,9 @@
 						a tutto il perimetro, ed effettivamente “creando” la forma, che è oltretutto la più semplice dato che ogni punto è equidistante dal centro.
 						 Il fatto che questa visualizzazione sia comunque bianca all’interno della forma non è dato dal fatto che i valori interni sono 
 						positivi, ma è una necessità per visualizzare il confine, che se riempito di valori negativi (nero) ostacolerebbe questa spiegazione.
-
+						
 					</p>
+					<img class="formula" src="./assets/img/Illustrazione_SDF-14.png">
 				</section>
 				
 				<section class=""> 
@@ -189,7 +190,7 @@
 					<p>
 						Sapendo come disegnare una forma e come muoverla viene da chiedersi quali altre forme si possano ottenere. La risposta è praticamente qualsiasi, la difficoltà sta nel capire le
 						formule. <br>Ma andando per ordine subito dopo il cerchio si può passare al quadrato o rettangolo. Se per il cerchio ogni punto era equidistante dal centro, per il rettangolo le cose si complicano.
-
+						
 					</p>
 				</section>
 				
@@ -203,6 +204,7 @@
 				<p>
 					
 				</p>
+				
 			</section>
 			
 			<section class="">
@@ -219,6 +221,8 @@
 					<p>
 						
 					</p>
+					<img class="formula" src="./assets/img/Illustrazione_SDF-15.png">
+
 				</section>
 				
 				<section class="">
@@ -310,6 +314,7 @@
 					
 					
 				</p>
+
 			</section>
 			
 			<section class="">
@@ -349,6 +354,8 @@
 					L’unione booleana si applica a due forme combinando le loro funzioni in un'unica  nuova SDF che restituisce il valore minimo delle distanze di un punto rispetto a ciascuna delle forme.
 					<br>La nuova funzione calcolerà la distanza dalla forma unita per ogni punto sul “nuovo” campo: restituirà un valore negativo se è all’ interno di almeno una delle due forme (indicando che è interno all’unione) o positivo se sarà fuori da entrambe le forme (indicando che è fuori dall’unione).
 				</p>
+				<img class="formula" src="./assets/img/Illustrazione_SDF-16.png">
+
 			</section>
 			
 			<section class="">
@@ -376,6 +383,8 @@
 					restituisce valori positivi al suo interno.
 
 				</p>
+				<img class="formula" src="./assets/img/Illustrazione_SDF-17.png">
+
 			</section>
 			
 			<section class="">
@@ -394,6 +403,8 @@
 						Quindi se il punto sarà in una sola forma sarà negativo per una ma positivo per l’altra. Se la funzione restituisce il massimo in questo caso tornerà il valore positivo (indicando che è fuori dall’intersezione). Il punto risulterà negativo solo quando sarà negativo per entrambe le forme, cioè quando la funzione restituirà un valore massimo tra due ma comunque negativo, (indicando che è interno all’intersezione).
 
 					</p>
+					<img class="formula" src="./assets/img/Illustrazione_SDF-18.png">
+
 				</section>
 				
 				<section class="">
@@ -446,6 +457,8 @@
 								una funzione che restituisce il valore massimo delle distanze di un punto rispetto a ciascuna 
 								delle forme, ma con un’area di influenza controllata dal parametro k.
 							</p>
+							<img class="formula" src="./assets/img/Illustrazione_SDF-19.png">
+
 						</section>
 						
 						<section class="">
@@ -494,9 +507,7 @@
 							<li><a href="https://www.shadertoy.com/view/Xds3zN">shadertoy.com</a></li>
 							<li><a href="https://www.treccani.it/vocabolario/distanza/">treccani.it</a></li>
 							<li><a href="https://youtu.be/LyQWZRfWotQ?si=Fypdu2DcTzMeY5Ae">youtube/CGMatter</a></li>
-							<li><a href="https://iquilezles.org/articles/distfunctions2d/">iquilezles.org</a></li>
-							<li><a href="https://iquilezles.org/articles/distfunctions2d/">iquilezles.org</a></li>
-							<li><a href="https://iquilezles.org/articles/distfunctions2d/">iquilezles.org</a></li>
+							<li><a href="https://www.youtube.com/watch?v=62-pRVZuS5c">youtube/Inigo Quilez</a></li>
 		
 					</div>
 				</section>
@@ -507,7 +518,7 @@
 						<p>
 							Lorenzo Livorsi<br>
 							Samuele De March<br>
-							Progetto realizzato nel corso Made-Isia/2025 
+							Progetto realizzato per il corso Made-Isia/2025 
 						<p>
 					</div>
 				</section>
