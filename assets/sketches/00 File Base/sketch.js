@@ -36,7 +36,8 @@ function draw() {
       //} else {
       //  fill (0)
       //}
-fill(bordoc1*255)
+
+      fill(bordoc1*255)
 
       rect(j * pix, i * pix, pix, pix); 
     }
