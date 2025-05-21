@@ -1,6 +1,6 @@
 
 function setup() {
-  createCanvas(min(600,windowHeight),min(windowHeight,600));
+  createCanvas(min(1200,windowWidth),min(windowHeight,600));
 }
 function draw() {   
 
@@ -12,19 +12,20 @@ function draw() {
 
   const DimStatic = min(400,windowHeight/1.8) ;
   const raggStatic = DimStatic / 2;
-  const centroStatic = min(600/2, windowHeight / 2);
+  const centroStaticX = min(1200/2, windowWidth / 2);
+  const centroStaticY = min(1200/2, windowHeight / 2);
 
-  ellipse(centroStatic, centroStatic, DimStatic);
+  ellipse(centroStaticX, centroStaticY, DimStatic);
   
-  const distanza = dist(mouseX, mouseY, centroStatic, centroStatic);
+  const distanza = dist(mouseX, mouseY, centroStaticX, centroStaticY);
   
   const centroDinamic = (mouseX, mouseY)
   const raggDinamic = abs(distanza - raggStatic);
   const DimDinamic = raggDinamic * 2;
   
   //da rivdere da qui in poi 
-  const CentroX = centroStatic - mouseX
-  const CentroY = centroStatic - mouseY
+  const CentroX = centroStaticX - mouseX
+  const CentroY = centroStaticY - mouseY
   
   const linea = sqrt ( CentroX*CentroX + CentroY * CentroY)
 

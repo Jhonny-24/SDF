@@ -73,16 +73,6 @@ section {
 	padding-top: 0.25em;
 }
 
-.iframeimg img{
-	margin: 0;
-	display: block;
-	border: none;
-	width: 100%;
-	max-width: 1300px;
-	aspect-ratio: 16 / 9;
-	object-fit: contain;
-}
-
 .iframelab {
 	margin: 0;
 	display: block;
@@ -142,6 +132,6 @@ ul {
 		width: 100%;
 	}
 	.bordopulsanti {
-		margin-left: 0; /* Or 'initial' or 'unset' */
+		margin-left: 0;
 	}
 }

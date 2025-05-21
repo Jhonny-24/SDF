@@ -1,5 +1,5 @@
 function setup() {
-  createCanvas(min(600, windowHeight), min(windowHeight, 600));
+  createCanvas(min(1200, windowWidth), windowHeight);
 }
 
 function draw() {
@@ -15,33 +15,34 @@ function draw() {
   const raggStatic = dimStatic / 2;
   const raggStaticX = DimStaticX / 2;
   const raggStaticY = DimStaticY / 2;
-  const centroStatic = min(600 / 2, windowHeight / 2);
+  const centroStaticX = min(1200 / 2, windowWidth / 2);
+  const centroStaticY = min(1200 / 2, windowHeight / 2);
   //const DimDinamic = raggDinamic * 2;
 
   // Calcola la distanza dal punto (mouseX, mouseY) al bordo del rettangolo
   // Questo è il calcolo chiave per la SDF del rettangolo
   const distToRectBorder = distanceToRectangle(
     mouseX, mouseY,
-    centroStatic, centroStatic,
+    centroStaticX, centroStaticY,
     DimStaticX, DimStaticY
   );
 
   rectMode(CENTER);
-  rect(centroStatic, centroStatic, DimStaticX, DimStaticY);
+  rect(centroStaticX, centroStaticY, DimStaticX, DimStaticY);
 
-  const distanza = dist(mouseX, mouseY, centroStatic, centroStatic);
+  const distanza = dist(mouseX, mouseY, centroStaticX, centroStaticY);
 
   // Determina se il punto è dentro o fuori il rettangolo
   const isInside = isPointInsideRectangle(
     mouseX, mouseY,
-    centroStatic, centroStatic,
+    centroStaticX, centroStaticY,
     raggStaticX, raggStaticY
   );
 
   // Calcola il vettore direzione dal mouse al punto più vicino sul rettangolo
   const closestPoint = closestPointOnRectangle(
     mouseX, mouseY,
-    centroStatic, centroStatic,
+    centroStaticX, centroStaticY,
     raggStaticX, raggStaticY
   );
 

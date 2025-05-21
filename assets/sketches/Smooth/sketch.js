@@ -1,95 +1,160 @@
 let sliderSmoothK;
 let currentOperation = "union"; // Default operation
 
-// Variabili per i pulsanti
-let btnAddition, btnSubtraction, btnIntersection;
-let canvasXOffset = 60; // Offset per posizionare il canvas
-let buttonSize = 40; // Dimensione dei pulsanti
-let buttonSpacing = 60; // Spazio tra i pulsanti
+let canvasXOffset = 60; // Offset per posizionare il canvas (fixed)
 
-function setup() {
-  // Crea il canvas con un offset per lasciare spazio ai pulsanti
-  let canvas = createCanvas(min(windowWidth,1200),min(windowWidth,1200));
-  canvas.position(canvasXOffset, 0);
-  
-  // Centramento bottoni nello spazio a sinistra
-  let buttonX = (canvasXOffset - buttonSize) / 2;
-  
-  // Crea i pulsanti HTML alla sinistra del canvas
-  btnAddition = createButton('+');
-  btnAddition.position(buttonX-10, 0); // Allineato al bordo superiore del canvas
-  btnAddition.size(buttonSize, buttonSize);
-  btnAddition.style('background-color', 'black');
-  btnAddition.style('color', 'white');
-  btnAddition.style('border', '1px solid white');
-  btnAddition.style('font-size', '24px');
-  btnAddition.mousePressed(() => currentOperation = "union");
-  
-  btnSubtraction = createButton('-');
-  btnSubtraction.position(buttonX-10, buttonSpacing);
-  btnSubtraction.size(buttonSize, buttonSize);
-  btnSubtraction.style('background-color', 'black');
-  btnSubtraction.style('color', 'white');
-  btnSubtraction.style('border', '1px solid white');
-  btnSubtraction.style('font-size', '24px');
-  btnSubtraction.mousePressed(() => currentOperation = "subtraction");
-  
-  btnIntersection = createButton('∩');
-  btnIntersection.position(buttonX-10, buttonSpacing * 2);
-  btnIntersection.size(buttonSize, buttonSize);
-  btnIntersection.style('background-color', 'black');
-  btnIntersection.style('color', 'white');
-  btnIntersection.style('border', '1px solid white');
-  btnIntersection.style('font-size', '24px');
-  btnIntersection.mousePressed(() => currentOperation = "intersection");
-  
-  // Crea lo slider verticale al centro rispetto ai pulsanti
-  sliderSmoothK = createSlider(0.01, 1, 0.5, 0.01); // min, max, value, step
-  sliderSmoothK.position(buttonX+11, buttonSpacing * 3 );
-  sliderSmoothK.style('width', '180px');
-  
-  // Applica gli stili allo slider
-  sliderSmoothK.style('appearance', 'none');
-  sliderSmoothK.style('-webkit-appearance', 'none');
-  sliderSmoothK.style('background', '#333333');
-  sliderSmoothK.style('height', '5px');
-  sliderSmoothK.style('outline', 'none');
-  
-  // Crea uno stile per la manopola dello slider GIALLA
+let btnAddition, btnSubtraction, btnIntersection;
+
+// Base dimensions for UI elements
+const baseButtonSize = 40;
+const baseButtonSpacing = 60;
+const baseButtonFontSize = 24;
+const baseSliderWidth = 180; // Length of the slider
+const baseSliderThickness = 2; // Thickness of the slider bar (2px, double button border)
+const baseSliderThumbSize = 15;
+const buttonRelativeX = -10; // X offset for buttons relative to their centered calculation
+const sliderRelativeX = 11;  // X offset for slider relative to its centered calculation
+
+// let currentSliderTrackColor = '#ffffff'; // Removed: Track is always white
+let currentSliderThumbColor = '#ffff00'; // Default: yellow (changed from white)
+
+function _applyResponsiveUiStyles() {
+  let scale = (windowWidth < 600 && windowWidth > 0) ? 0.5 : 1.0;
+
+  let currentButtonSize = baseButtonSize * scale;
+  let currentButtonSpacing = baseButtonSpacing * scale;
+  let currentButtonFontSize = baseButtonFontSize * scale;
+  let currentSliderWidth = baseSliderWidth * scale;
+  let currentSliderThickness = baseSliderThickness * scale;
+  let currentSliderThumbSize = baseSliderThumbSize * scale;
+
+  // Calculate horizontal position base for centered elements within canvasXOffset
+  let buttonX = (canvasXOffset - currentButtonSize) / 2;
+
+  // Update buttons
+  btnAddition.position(buttonX + buttonRelativeX, 0);
+  btnAddition.size(currentButtonSize, currentButtonSize);
+  btnAddition.style('font-size', currentButtonFontSize + 'px');
+
+  btnSubtraction.position(buttonX + buttonRelativeX, currentButtonSpacing);
+  btnSubtraction.size(currentButtonSize, currentButtonSize);
+  btnSubtraction.style('font-size', currentButtonFontSize + 'px');
+
+  btnIntersection.position(buttonX + buttonRelativeX, currentButtonSpacing * 2);
+  btnIntersection.size(currentButtonSize, currentButtonSize);
+  btnIntersection.style('font-size', currentButtonFontSize + 'px');
+
+  // Determine the slider's X offset based on scale
+  let currentSliderXOffset = sliderRelativeX; // Default (11)
+  if (scale === 0.5) {
+    currentSliderXOffset = 0; // When small, use button's relative X (-10) to move it left
+  }
+
+  // Update slider
+  sliderSmoothK.position(buttonX + currentSliderXOffset, currentButtonSpacing * 3);
+  sliderSmoothK.style('width', currentSliderWidth + 'px');
+  sliderSmoothK.style('height', currentSliderThickness + 'px');
+  sliderSmoothK.style('background', '#ffffff'); // Track is always white
+
+  // Update slider thumb style (remove old, add new)
+  const styleId = 'sliderThumbStyle';
+  let existingStyleElement = document.getElementById(styleId);
+  if (existingStyleElement) {
+    existingStyleElement.remove();
+  }
   let styleElem = document.createElement('style');
+  styleElem.id = styleId;
   styleElem.innerHTML = `
     #${sliderSmoothK.elt.id}::-webkit-slider-thumb {
       -webkit-appearance: none !important;
       appearance: none !important;
-      width: 15px !important;
-      height: 15px !important;
-      border-radius: 50% !important;
-      background: #ffff00 !important; /* Giallo */
+      width: ${currentSliderThumbSize}px !important;
+      height: ${currentSliderThumbSize}px !important;
+      border-radius: 0 !important; /* Changed from 50% to 0 for square */
+      background: ${currentSliderThumbColor} !important; /* Use variable for thumb color */
       cursor: pointer !important;
-      border: none !important;
+      border: none !important; // Ensures no outline
     }
     #${sliderSmoothK.elt.id}::-moz-range-thumb {
-      width: 15px !important;
-      height: 15px !important;
+      width: ${currentSliderThumbSize}px !important;
+      height: ${currentSliderThumbSize}px !important;
       border-radius: 50% !important;
-      background: #ffff00 !important; /* Giallo */
+      background: ${currentSliderThumbColor} !important; /* Use variable for thumb color */
       cursor: pointer !important;
-      border: none !important;
+      border: none !important; // Ensures no outline
     }
   `;
   document.head.appendChild(styleElem);
+}
+
+function setup() {
+  let canvas = createCanvas(min(windowWidth,1200),min(windowWidth,1200));
+  canvas.position(canvasXOffset, 0);
   
-  // Applica la rotazione per renderlo verticale
+  btnAddition = createButton('+');
+  // Initial minimal styling, position/size set by _applyResponsiveUiStyles
+  btnAddition.style('background-color', 'black');
+  btnAddition.style('color', 'white');
+  btnAddition.style('border', '1px solid white');
+  btnAddition.mousePressed(() => currentOperation = "union");
+  
+  btnSubtraction = createButton('-');
+  btnSubtraction.style('background-color', 'black');
+  btnSubtraction.style('color', 'white');
+  btnSubtraction.style('border', '1px solid white');
+  btnSubtraction.mousePressed(() => currentOperation = "subtraction");
+  
+  btnIntersection = createButton('∩');
+  btnIntersection.style('background-color', 'black');
+  btnIntersection.style('color', 'white');
+  btnIntersection.style('border', '1px solid white');
+  btnIntersection.mousePressed(() => currentOperation = "intersection");
+  
+  sliderSmoothK = createSlider(0.01, 1, 0.5, 0.01);
+  sliderSmoothK.style('appearance', 'none');
+  sliderSmoothK.style('-webkit-appearance', 'none');
+  sliderSmoothK.style('outline', 'none');
   sliderSmoothK.style('transform', 'rotate(90deg)');
   sliderSmoothK.style('transform-origin', 'left top');
+
+  // Event handlers for slider color change
+  sliderSmoothK.input(() => {
+    // currentSliderTrackColor = '#ffff00'; // Removed: Track stays white
+    currentSliderThumbColor = '#ffff00'; // Yellow
+    _applyResponsiveUiStyles(); 
+  });
+
+  sliderSmoothK.changed(() => {
+    // currentSliderTrackColor = '#ffffff'; // Removed: Track stays white
+    currentSliderThumbColor = '#ffffff'; // White
+    _applyResponsiveUiStyles(); 
+  });
+
+  _applyResponsiveUiStyles(); // Apply initial styles
+}
+
+function windowResized() {
+  let newCanvasWidth = min(windowWidth,1200);
+  let newCanvasHeight = min(windowWidth,1200); // Keeping canvas square based on width
+  resizeCanvas(newCanvasWidth, newCanvasHeight);
+  
+  let mainCanvas = select('canvas');
+  if (mainCanvas) {
+    mainCanvas.position(canvasXOffset, 0);
+  }
+  _applyResponsiveUiStyles();
 }
 
 function draw() {   
-  const pix = min(windowWidth, 1200)/120;
-  const soglia = pix * 0.5 / windowWidth * 2; 
+  const canvasActualWidth = width; // p5.js 'width' is canvas width
+  const canvasActualHeight = height; // p5.js 'height' is canvas height
+
+  const pix = min(canvasActualWidth, canvasActualHeight)/120; 
+  const soglia = pix * 0.5 / canvasActualWidth * 2; 
   
-  const normMouseX = mouseX / windowWidth * 2 - 1;
-  const normMouseY = mouseY / min(windowWidth,1200) * 2 - 1;
+  // Adjust mouseX for canvas offset before normalization
+  const normMouseX = (mouseX - canvasXOffset) / canvasActualWidth * 2 - 1;
+  const normMouseY = mouseY / canvasActualHeight * 2 - 1; // mouseY is fine if canvas Y is 0
   const onde = 80; 
   
   const kValue = sliderSmoothK.value();
@@ -98,8 +163,8 @@ function draw() {
 
   noStroke();
   
-  const numPixX = floor(min(1200,windowWidth) / pix);
-  const numPixY = floor(min(1200,windowWidth) / pix); 
+  const numPixX = floor(canvasActualWidth / pix);
+  const numPixY = floor(canvasActualHeight / pix); 
 
   for (let j = 0; j < numPixX; j++) {    
     for (let i = 0; i < numPixY; i++) {   
@@ -148,7 +213,7 @@ function draw() {
   }
   
   stroke(255);
-  strokeWeight(0.5*(windowHeight/windowWidth));
+  strokeWeight(0.5 * (canvasActualHeight > 0 ? (canvasActualHeight / canvasActualWidth) : 1));
 
   for(let i =0; i<numPixX+1; i++) {
     const x = i*pix
@@ -165,14 +230,35 @@ function draw() {
 
 function updateButtonStyles() {
   // Imposta lo stile del pulsante attivo (giallo quando selezionato)
-  btnAddition.style('background-color', currentOperation === "union" ? '#ffff00' : 'black');
-  btnAddition.style('color', currentOperation === "union" ? 'black' : 'white');
+  if (currentOperation === "union") {
+    btnAddition.style('background-color', '#ffff00');
+    btnAddition.style('color', 'black');
+    btnAddition.style('border', '1px solid #ffff00'); // Bordo giallo
+  } else {
+    btnAddition.style('background-color', 'black');
+    btnAddition.style('color', 'white');
+    btnAddition.style('border', '1px solid white'); // Bordo bianco
+  }
   
-  btnSubtraction.style('background-color', currentOperation === "subtraction" ? '#ffff00' : 'black');
-  btnSubtraction.style('color', currentOperation === "subtraction" ? 'black' : 'white');
+  if (currentOperation === "subtraction") {
+    btnSubtraction.style('background-color', '#ffff00');
+    btnSubtraction.style('color', 'black');
+    btnSubtraction.style('border', '1px solid #ffff00'); // Bordo giallo
+  } else {
+    btnSubtraction.style('background-color', 'black');
+    btnSubtraction.style('color', 'white');
+    btnSubtraction.style('border', '1px solid white'); // Bordo bianco
+  }
   
-  btnIntersection.style('background-color', currentOperation === "intersection" ? '#ffff00' : 'black');
-  btnIntersection.style('color', currentOperation === "intersection" ? 'black' : 'white');
+  if (currentOperation === "intersection") {
+    btnIntersection.style('background-color', '#ffff00');
+    btnIntersection.style('color', 'black');
+    btnIntersection.style('border', '1px solid #ffff00'); // Bordo giallo
+  } else {
+    btnIntersection.style('background-color', 'black');
+    btnIntersection.style('color', 'white');
+    btnIntersection.style('border', '1px solid white'); // Bordo bianco
+  }
 }
 
 function rettangolo(px, py, halfWidth, halfHeight, angDegrees) {
