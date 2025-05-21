@@ -60,7 +60,7 @@ function draw() {
 
   noStroke()
   fill(255, 255, 0)
-  ellipse(mouseX, mouseY, 20)
+  ellipse(mouseX, mouseY, raggStatic*0.1)
 
   fill(255); 
   textSize(14);
