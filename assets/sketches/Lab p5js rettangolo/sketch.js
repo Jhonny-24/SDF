@@ -1,52 +1,61 @@
 function setup() {
   createCanvas(min(1200, windowWidth), windowHeight);
+  // Aggiungi console.log come nel codice del cerchio per monitorare il valore responsivo
+  
 }
-
 function draw() {
   background(0);
 
-  stroke(255);
-  noFill();
-  strokeWeight(2);
-
-  const dimStatic  = min(400, windowHeight / 1.5)
+  // Dimensioni e caratteristiche responsive, come nel codice del cerchio
+  const dimStatic = min(400, windowHeight / 1.5);
   const DimStaticX = min(400, windowHeight / 3);
-  const DimStaticY = min(400, windowHeight / 1.5);;
+  const DimStaticY = min(400, windowHeight / 1.5);
   const raggStatic = dimStatic / 2;
   const raggStaticX = DimStaticX / 2;
   const raggStaticY = DimStaticY / 2;
   const centroStaticX = min(1200 / 2, windowWidth / 2);
   const centroStaticY = min(1200 / 2, windowHeight / 2);
-  //const DimDinamic = raggDinamic * 2;
+  
+  // Valore responsivo prelevato dal codice del cerchio, esattamente come definito lì
+  const ValoreResponsivo = raggStatic * 0.07;
+  
+  // Implementazione dello strokeWeight responsivo dal codice del cerchio
+  stroke(255);
+  noFill();
+  if (ValoreResponsivo > 2) {
+    strokeWeight(ValoreResponsivo * 0.15);
+  } else {
+    strokeWeight(ValoreResponsivo * 0.20);
+  }
 
-  // Calcola la distanza dal punto (mouseX, mouseY) al bordo del rettangolo
-  // Questo è il calcolo chiave per la SDF del rettangolo
+  // Disegno del rettangolo
+  rectMode(CENTER);
+  rect(centroStaticX, centroStaticY, DimStaticX, DimStaticY);
+
+  // Calcolo della distanza dal bordo del rettangolo (SDF)
   const distToRectBorder = distanceToRectangle(
     mouseX, mouseY,
     centroStaticX, centroStaticY,
     DimStaticX, DimStaticY
   );
 
-  rectMode(CENTER);
-  rect(centroStaticX, centroStaticY, DimStaticX, DimStaticY);
-
   const distanza = dist(mouseX, mouseY, centroStaticX, centroStaticY);
 
-  // Determina se il punto è dentro o fuori il rettangolo
+  // Verifica se il punto è dentro o fuori il rettangolo
   const isInside = isPointInsideRectangle(
     mouseX, mouseY,
     centroStaticX, centroStaticY,
     raggStaticX, raggStaticY
   );
 
-  // Calcola il vettore direzione dal mouse al punto più vicino sul rettangolo
+  // Trova il punto più vicino sul bordo del rettangolo
   const closestPoint = closestPointOnRectangle(
     mouseX, mouseY,
     centroStaticX, centroStaticY,
     raggStaticX, raggStaticY
   );
 
-  // Colore della linea in base alla posizione (dentro o fuori)
+  // Colorazione della linea in base alla posizione
   if (isInside) {
     stroke(255, 0, 0);
   } else {
@@ -59,29 +68,38 @@ function draw() {
   // Cerchio giallo tangente al rettangolo
   stroke(255, 255, 0);
   noFill();
-  // Usa la distanza al bordo come raggio del cerchio
-  ellipse(mouseX, mouseY, distToRectBorder * 2);
+  // Usa la distanza al bordo come raggio del cerchio, garantendo che sia sempre positiva
+  ellipse(mouseX, mouseY, abs(distToRectBorder) * 2);
 
-  // Punto al centro del cerchio giallo
+  // Pallino giallo al centro con dimensione responsiva, esattamente come nel codice del cerchio
   noStroke();
   fill(255, 255, 0);
-  ellipse(mouseX, mouseY, raggStatic*0.1);// AHIOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+  let b;
+  if (ValoreResponsivo > 2) {
+    b = ValoreResponsivo * 1.8;
+  } else if (ValoreResponsivo > 10) {
+    b = ValoreResponsivo * 0.5;
+  } else {
+    b = ValoreResponsivo * 2; // Valore di default per casi non specificati
+  }
+  ellipse(mouseX, mouseY, b);
 
-  // Visualizza la distanza dal bordo
+  // Visualizza la distanza dal bordo con dimensione del testo responsiva
   fill(255);
-  textSize(14);
   textAlign(CENTER, CENTER);
+  
+  // Calcola il punto medio per il testo
   const midPointX = (mouseX + closestPoint.x) / 2;
   const midPointY = (mouseY + closestPoint.y) / 2;
-  text(distToRectBorder.toFixed(0), midPointX, midPointY);
 
-  
-  
-  // Visualizza la distanza dal centro
-  //fill(255);
-  //textSize(14);
-  //textAlign(CENTER, CENTER);
-  //text(distanza.toFixed(0), mouseX + 10, mouseY - 10);
+  // Mostra il testo con dimensione responsiva e segno negativo se all'interno, esattamente come nel codice del cerchio
+  if (isInside) {
+    textSize(ValoreResponsivo * 2.5);
+    text(-abs(distToRectBorder).toFixed(0), mouseX, mouseY - ValoreResponsivo * 3);
+  } else {
+    textSize(ValoreResponsivo * 2.5);
+    text(abs(distToRectBorder).toFixed(0), mouseX, mouseY - ValoreResponsivo*3);
+  }
 }
 
 // Funzione per calcolare la distanza minima da un punto a un rettangolo (SDF del rettangolo)
