@@ -37,6 +37,13 @@ iframe {
 	width: 100%;
 	max-width: 1300px;
 	aspect-ratio: 16 / 9;
+	height: 100%;
+	object-fit: contain;
+}
+
+iframe img {
+	height: 100%;
+	object-fit: contain;
 }
 
 header,
@@ -54,7 +61,14 @@ section {
 	max-width: 1300px;
 	aspect-ratio: 16 / 9;
 	object-fit: contain;
+	height: 100%;
 }
+
+.iframeimg img {
+	height: 100%;
+	object-fit: contain;
+}
+
 .iframelab {
 	margin: 0;
 	display: block;

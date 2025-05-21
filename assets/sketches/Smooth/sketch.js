@@ -17,7 +17,7 @@ function setup() {
   
   // Crea i pulsanti HTML alla sinistra del canvas
   btnAddition = createButton('+');
-  btnAddition.position(buttonX, 0); // Allineato al bordo superiore del canvas
+  btnAddition.position(buttonX-10, 0); // Allineato al bordo superiore del canvas
   btnAddition.size(buttonSize, buttonSize);
   btnAddition.style('background-color', 'black');
   btnAddition.style('color', 'white');
@@ -26,7 +26,7 @@ function setup() {
   btnAddition.mousePressed(() => currentOperation = "union");
   
   btnSubtraction = createButton('-');
-  btnSubtraction.position(buttonX, buttonSpacing);
+  btnSubtraction.position(buttonX-10, buttonSpacing);
   btnSubtraction.size(buttonSize, buttonSize);
   btnSubtraction.style('background-color', 'black');
   btnSubtraction.style('color', 'white');
@@ -35,7 +35,7 @@ function setup() {
   btnSubtraction.mousePressed(() => currentOperation = "subtraction");
   
   btnIntersection = createButton('∩');
-  btnIntersection.position(buttonX, buttonSpacing * 2);
+  btnIntersection.position(buttonX-10, buttonSpacing * 2);
   btnIntersection.size(buttonSize, buttonSize);
   btnIntersection.style('background-color', 'black');
   btnIntersection.style('color', 'white');
@@ -45,7 +45,7 @@ function setup() {
   
   // Crea lo slider verticale al centro rispetto ai pulsanti
   sliderSmoothK = createSlider(0.01, 1, 0.5, 0.01); // min, max, value, step
-  sliderSmoothK.position(buttonX+21, buttonSpacing * 3 );
+  sliderSmoothK.position(buttonX+11, buttonSpacing * 3 );
   sliderSmoothK.style('width', '180px');
   
   // Applica gli stili allo slider
