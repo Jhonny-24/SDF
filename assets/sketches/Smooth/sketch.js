@@ -153,7 +153,7 @@ function draw() {
   const soglia = pix * 0.5 / canvasActualWidth * 2; 
   
   // Adjust mouseX for canvas offset before normalization
-  const normMouseX = (mouseX - canvasXOffset) / canvasActualWidth * 2 - 1;
+  const normMouseX = mouseX / canvasActualWidth * 2 - 1;
   const normMouseY = mouseY / canvasActualHeight * 2 - 1; // mouseY is fine if canvas Y is 0
   const onde = 80; 
   
